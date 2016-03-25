@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Berpasangan</string>
+    <string name="string_main_activity_title">Berpasangan</string>
+    <string name="string_main_activity_subtitle">Semua ada pasangannya.</string>
+    <string name="string_main_activity_start_button">Mulai</string>
+    <string name="string_main_activity_help_button">Bantuan</string>
+    <string name="string_main_activity_exit_button">Keluar</string>
+    <string name="string_main_activity_exit_prompt">Apakah Anda yakin ingin keluar?</string>
+    <string name="string_main_activity_exit_prompt_title">Keluar</string>
+    <string name="string_main_activity_exit_prompt_positive">Ya</string>
+    <string name="string_main_activity_exit_prompt_negative">Tidak</string>
+</resources>

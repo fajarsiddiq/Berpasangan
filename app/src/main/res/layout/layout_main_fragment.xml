@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/id_main_activity_fragment_title_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/string_main_activity_title"
+        android:textSize="30sp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/id_main_activity_fragment_subtitle_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/id_main_activity_fragment_title_text_view"
+        android:text="@string/string_main_activity_subtitle"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <Button
+            android:id="@+id/id_main_fragment_start_button"
+            style="@style/style_main_menu_button"
+            android:text="@string/string_main_activity_start_button"/>
+
+        <Button
+            android:id="@+id/id_main_fragment_help_button"
+            style="@style/style_main_menu_button"
+            android:text="@string/string_main_activity_help_button"/>
+
+        <Button
+            android:id="@+id/id_main_fragment_exit_button"
+            style="@style/style_main_menu_button"
+            android:text="@string/string_main_activity_exit_button"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
