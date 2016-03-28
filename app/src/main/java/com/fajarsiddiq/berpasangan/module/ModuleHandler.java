@@ -33,6 +33,6 @@ public class ModuleHandler extends Handler {
         if(message.what == mWhatFinish)
             mFragment.getActivity().finish();
         else if(message.what == mWhatSnackBar)
-            with(mFragment.getContext()).text((CharSequence) message.obj).duration(message.arg1 == 0 ? LENGTH_SHORT : LENGTH_LONG).show(mFragment.getActivity());
+            with(mFragment.getActivity()).text((CharSequence) message.obj).duration(message.arg1 == 0 ? LENGTH_SHORT : LENGTH_LONG).show(mFragment.getActivity());
     }
 }

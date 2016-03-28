@@ -9,4 +9,9 @@
     <string name="string_main_activity_exit_prompt_title">Keluar</string>
     <string name="string_main_activity_exit_prompt_positive">Ya</string>
     <string name="string_main_activity_exit_prompt_negative">Tidak</string>
+    <string name="string_main_activity_select_level_message">Silahkan pilih ukuran tile untuk memulai permainan :</string>
+    <string name="string_main_activity_select_level_title">Pilih Ukuran Tile</string>
+    <string name="string_board_fragment_timer_finish_title">Game Over!</string>
+    <string name="string_board_fragment_timer_finish_message">Waktu Anda telah habis. Permainan usai!</string>
+    <string name="string_board_fragment_timer_positive">Lihat Skor Akhir</string>
 </resources>
