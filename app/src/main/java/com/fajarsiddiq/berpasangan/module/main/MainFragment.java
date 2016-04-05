@@ -23,6 +23,7 @@ import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_exit_pro
 import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_exit_prompt_negative;
 import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_select_level_title;
 import static com.fajarsiddiq.berpasangan.R.array.array_level_name;
+import static java.lang.Integer.parseInt;
 
 /**
  * Created by Muhammad Fajar on 17/03/2016.
@@ -57,8 +58,11 @@ public class MainFragment extends ModuleFragment implements View.OnClickListener
                     @Override
                     public void onClick(DialogInterface dialog, final int which) {
                         for (int ii = 0; ii < levels.length; ii++) {
-                            if (ii == which)
-                                startActivity(new Intent(getContext(), BoardActivity.class).putExtra("Level Name", levels[ii]));
+                            if (ii == which) {
+                                int row = parseInt(levels[ii].split(" ")[0]);
+                                int column = parseInt(levels[ii].split(" ")[2]);
+                                startActivity(new Intent(getContext(), BoardActivity.class).putExtra(BoardActivity.row, row).putExtra(BoardActivity.column, column));
+                            }
                         }
                     }
                 });
