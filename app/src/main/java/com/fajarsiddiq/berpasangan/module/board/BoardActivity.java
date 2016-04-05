@@ -20,10 +20,4 @@ public class BoardActivity extends ModuleActivity {
         setContentView(layout_board_activity);
     }
 
-    @Override
-    public void onBackPressed() {
-        BoardFragment fragment = (BoardFragment) getSupportFragmentManager().findFragmentById(id_board_activity_fragment);
-        fragment.stopTimer();
-        super.onBackPressed();
-    }
 }

@@ -43,15 +43,17 @@ public class BoardHandler extends ModuleHandler {
             fragment.getTimerTextView().setText((String) message.obj);
         } else if(message.what == mWhatTimeout) {
             final BoardActivity activity = (BoardActivity) fragment.getActivity();
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setTitle(string_board_fragment_timer_finish_title)
-                    .setMessage(string_board_fragment_timer_finish_message)
-                    .setPositiveButton(fragment.getString(string_board_fragment_timer_positive), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(activity, "Sabar ya, belum diimplementasi", Toast.LENGTH_SHORT).show();
-                        }
-                    }).create().show();
+            if(activity != null) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setTitle(string_board_fragment_timer_finish_title)
+                        .setMessage(string_board_fragment_timer_finish_message)
+                        .setPositiveButton(fragment.getString(string_board_fragment_timer_positive), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(activity, "Sabar ya, belum diimplementasi", Toast.LENGTH_SHORT).show();
+                            }
+                        }).create().show();
+            }
         } else if(message.what == mWhatQuestion) {
             Point size = new Point();
             fragment.getActivity().getWindowManager().getDefaultDisplay().getSize(size);
@@ -68,7 +70,13 @@ public class BoardHandler extends ModuleHandler {
                 view = from(fragment.getContext()).inflate(layout_tile, null);
                 view.setMinimumWidth(screenWidth / ((x > y) ? x : y));
                 view.setMinimumHeight(screenWidth / ((x > y) ? x : y));
-                ((TextView) view.findViewById(id_tile_text_view)).setText(valueOf(ii));
+                view.setPadding(10, 10, 10, 10);
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
                 gridLayout.addView(view);
             }
         }
