@@ -5,4 +5,15 @@
         <item>3 x 4</item>
         <item>4 x 4</item>
     </string-array>
+
+    <string-array name="array_color">
+        <item>#009688</item>
+        <item>#00BCD4</item>
+        <item>#FFEB3B</item>
+        <item>#E91E63</item>
+        <item>#03A9F4</item>
+        <item>#CDDC39</item>
+        <item>#4CAF50</item>
+        <item>#795548</item>
+    </string-array>
 </resources>

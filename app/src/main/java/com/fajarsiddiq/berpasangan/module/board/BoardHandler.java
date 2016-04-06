@@ -13,13 +13,11 @@ import com.fajarsiddiq.berpasangan.module.ModuleHandler;
 import com.fajarsiddiq.berpasangan.sqlite.Item;
 
 import static android.view.LayoutInflater.from;
-import static com.fajarsiddiq.berpasangan.R.id.media_actions;
-import static java.lang.String.valueOf;
-import static com.fajarsiddiq.berpasangan.R.id.id_tile_text_view;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timer_positive;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timer_finish_message;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timer_finish_title;
 import static com.fajarsiddiq.berpasangan.R.layout.layout_tile;
+import static android.graphics.Color.parseColor;
 
 /**
  * Created by Muhammad Fajar on 28/03/2016.
@@ -71,6 +69,7 @@ public class BoardHandler extends ModuleHandler {
                 view.setMinimumWidth(screenWidth / ((x > y) ? x : y));
                 view.setMinimumHeight(screenWidth / ((x > y) ? x : y));
                 view.setPadding(10, 10, 10, 10);
+                view.setBackgroundColor(parseColor(items[ii].getValue())); //http://stackoverflow.com/questions/2173936/how-to-set-background-color-of-a-view
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
