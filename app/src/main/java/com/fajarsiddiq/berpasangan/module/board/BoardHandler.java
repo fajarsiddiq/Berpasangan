@@ -2,15 +2,18 @@ package com.fajarsiddiq.berpasangan.module.board;
 
 import android.content.DialogInterface;
 import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fajarsiddiq.berpasangan.module.ModuleHandler;
 import com.fajarsiddiq.berpasangan.sqlite.Item;
+import com.nispok.snackbar.Snackbar;
 
 import static android.view.LayoutInflater.from;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timer_positive;
@@ -18,20 +21,24 @@ import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timer_f
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timer_finish_title;
 import static com.fajarsiddiq.berpasangan.R.layout.layout_tile;
 import static android.graphics.Color.parseColor;
+import static android.view.View.OnClickListener;
 
 /**
  * Created by Muhammad Fajar on 28/03/2016.
  */
-public class BoardHandler extends ModuleHandler {
+public class BoardHandler extends ModuleHandler implements OnClickListener {
     public int mWhatTimer;
     public int mWhatTimeout;
     public int mWhatQuestion;
+
+    private View first;
 
     public BoardHandler(final BoardFragment fragment) {
         super(fragment);
         mWhatTimer = mWhat + 1;
         mWhatTimeout = mWhat + 2;
         mWhatQuestion = mWhat + 3;
+        first = null;
     }
 
     @Override
@@ -68,16 +75,22 @@ public class BoardHandler extends ModuleHandler {
                 view = from(fragment.getContext()).inflate(layout_tile, null);
                 view.setMinimumWidth(screenWidth / ((x > y) ? x : y));
                 view.setMinimumHeight(screenWidth / ((x > y) ? x : y));
-                view.setPadding(10, 10, 10, 10);
                 view.setBackgroundColor(parseColor(items[ii].getValue())); //http://stackoverflow.com/questions/2173936/how-to-set-background-color-of-a-view
-                view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
+                view.setId(ii);
+                view.setOnClickListener(this);
                 gridLayout.addView(view);
             }
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        BoardFragment fragment = (BoardFragment) mFragment;
+        if (first == null)
+            first = view;
+        else {
+            Snackbar.with(mFragment.getContext()).text(fragment.isSame(first.getId(), view.getId()) ? "It's same" : "It's different").duration(Snackbar.SnackbarDuration.LENGTH_SHORT).show(mFragment.getActivity());
+            first = null;
         }
     }
 }

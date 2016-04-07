@@ -84,7 +84,6 @@ public class BoardController extends ModuleController {
         @Override
         protected Item[] doInBackground(Integer... params) {
             Item[] items = new Item[params[0]*params[1]];
-            board = new Board(params[0], params[1]);
             final String[] colors = mContext.getResources().getStringArray(array_color);
             int noOfQuestion = items.length / 2;
             Question question;
@@ -98,13 +97,20 @@ public class BoardController extends ModuleController {
 
             List<Item> temp = asList(items);
             shuffle(temp);
-            return temp.toArray(new Item[temp.size()]);
+            items = temp.toArray(new Item[temp.size()]);
+            board = new Board(items);
+            return items;
         }
 
         @Override
         protected void onPostExecute(Item[] items) {
             mHandler.sendMessage(obtain(mHandler, mHandler.mWhatQuestion, x, y, items));
         }
+    }
+
+    public boolean isSame(final int id1, final int id2) {
+        Item item1 = board.getCell(id1), item2 = board.getCell(id2);
+        return item1.getValue().equals(item2.getValue());
     }
 
 }

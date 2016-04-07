@@ -8,15 +8,19 @@ import com.fajarsiddiq.berpasangan.sqlite.Item;
 public class Board {
     private int height;
     private int width;
-    private Item[][] board;
+    private Item[] board;
 
     public Board(final int width, final int height) {
         this.height = height;
         this.width = width;
-        board = new Item[width][height];
+        board = new Item[width*height];
     }
 
-    public Item getCell(final int coorX, final int coorY) {
-        return board[coorX][coorY];
+    public Board(final Item[] items) {
+        this.board = items;
+    }
+
+    public Item getCell(final int loc) {
+        return board[loc];
     }
 }

@@ -33,7 +33,7 @@ public class BoardFragment extends ModuleFragment {
         mTimerTextView = (TextView) view.findViewById(id_board_fragment_timer_text_view);
         mScoreTextView = (TextView) view.findViewById(id_board_fragment_score_text_view);
         mController = new BoardController(this);
-        initTimer(10);
+        //initTimer(10);
 
         Bundle bundle = getActivity().getIntent().getExtras();
         initQuestion(bundle.getInt(BoardActivity.row), bundle.getInt(BoardActivity.column));
@@ -71,4 +71,10 @@ public class BoardFragment extends ModuleFragment {
     public void stopTimer() {
         mController.stopTimer();
     }
+
+    public boolean isSame(final int id1, final int id2) {
+        return mController.isSame(id1, id2);
+    }
+
+
 }
