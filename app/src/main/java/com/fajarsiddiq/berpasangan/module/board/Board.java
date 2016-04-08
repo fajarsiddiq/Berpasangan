@@ -23,4 +23,8 @@ public class Board {
     public Item getCell(final int loc) {
         return board[loc];
     }
+
+    public int getLength() {
+        return board.length;
+    }
 }

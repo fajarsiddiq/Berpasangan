@@ -6,7 +6,18 @@ import com.fajarsiddiq.berpasangan.sqlite.Item;
  * Created by Muhammad Fajar on 03/04/2016.
  */
 public class Question extends Item {
+    private boolean answered;
+
     public Question(String value) {
         super(value);
+        answered = false;
+    }
+
+    public boolean isAnswered() {
+        return answered;
+    }
+
+    public void setAnswered(boolean answered) {
+        this.answered = answered;
     }
 }

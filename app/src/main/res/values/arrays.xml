@@ -7,13 +7,13 @@
     </string-array>
 
     <string-array name="array_color">
-        <item>#FF009688</item>
-        <item>#FF00BCD4</item>
-        <item>#FFFFEB3B</item>
-        <item>#FFE91E63</item>
-        <item>#FF03A9F4</item>
-        <item>#FFCDDC39</item>
-        <item>#FF4CAF50</item>
-        <item>#FF795548</item>
+        <item>#009688</item>
+        <item>#00BCD4</item>
+        <item>#FFEB3B</item>
+        <item>#E91E63</item>
+        <item>#03A9F4</item>
+        <item>#CDDC39</item>
+        <item>#4CAF50</item>
+        <item>#795548</item>
     </string-array>
 </resources>

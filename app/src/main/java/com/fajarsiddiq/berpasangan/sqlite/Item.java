@@ -43,4 +43,10 @@ public class Item {
     public void setValue(String value) {
         this.value = value;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        Item item = (Item) object;
+        return this.value.equals(item.value);
+    }
 }

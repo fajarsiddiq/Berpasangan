@@ -76,5 +76,21 @@ public class BoardFragment extends ModuleFragment {
         return mController.isSame(id1, id2);
     }
 
+    public boolean isZonk(final int id) {
+        return mController.isZonk(id);
+    }
+
+    public String getColor(final int id) {
+        return mController.getColor(id);
+    }
+
+    public void refreshBoard(final Integer id1, final Integer id2) {
+        if(id1 != null && id2 != null)
+            mController.getView(id1, id2);
+        else if(id1 != null && id2 == null)
+            mController.getView(id1);
+        else
+            mController.getView();
+    }
 
 }
