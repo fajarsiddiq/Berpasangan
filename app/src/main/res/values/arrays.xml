@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="array_level_name">
+        <item>2 x 2</item>
         <item>3 x 3</item>
         <item>3 x 4</item>
         <item>4 x 4</item>
@@ -16,4 +17,47 @@
         <item>#4CAF50</item>
         <item>#795548</item>
     </string-array>
+    
+    <string-array name="array_question">
+        <item>parthenon_.GR</item>
+        <item>torii_.JP</item>
+        <item>atomium_.BE</item>
+        <item>bluemosque_.TR</item>
+        <item>burjkhalifa_.AE</item>
+        <item>bigben_.UK</item>
+        <item>kaaba_.SA</item>
+        <item>liberty_.US</item>
+        <item>lincoln_.US</item>
+        <item>eiffel_.FR</item>
+        <item>coliseum_.IT</item>
+        <item>pisa_.IT</item>
+        <item>hollywood_.SA</item>
+        <item>londoneye_.UK</item>
+        <item>monas_.ID</item>
+        <item>mpr_.ID</item>
+        <item>nationaltower_.CA</item>
+        <item>obelisk_.SA</item>
+        <item>sphinx_.EG</item>
+        <item>angkorwat_.KH</item>
+        <item>stonehenge_.UK</item>
+        <item>twintowers_.MY</item>
+        <item>windmill_.NL</item>
+        <item>saintbasil_.RU</item>
+        <item>operahouse_.AU</item>
+        <item>rushmore_.US</item>
+        <item>pyramid_.EG</item>
+        <item>tajmahal_.IN</item>
+        <item>merlion_.SG</item>
+        <item>greatwall_.CN</item>
+        <item>greatbuddha_.JP</item>
+        <item>empirestate_.SA</item>
+        <item>christ_.BR</item>
+        <item>spaceneedle_.SA</item>
+        <item>louvrepyramid_.FR</item>
+        <item>machupicchu_.PE</item>
+        <item>mayapyramid_.MX</item>
+        <item>borobudur_.ID</item>
+        <item>moai_.PF</item>
+    </string-array>
+
 </resources>

@@ -1,5 +1,8 @@
 package com.fajarsiddiq.berpasangan.sqlite;
 
+import com.fajarsiddiq.berpasangan.module.board.Answer;
+import com.fajarsiddiq.berpasangan.module.board.Question;
+
 /**
  * Created by Muhammad Fajar on 03/04/2016.
  */
@@ -18,6 +21,7 @@ public class Item {
     public Item(String id, String name, String value) {
         this.id = id;
         this.name = name;
+        this.value = value;
     }
 
     public String getId() {
@@ -48,5 +52,12 @@ public class Item {
     public boolean equals(Object object) {
         Item item = (Item) object;
         return this.value.equals(item.value);
+    }
+
+    public void setAnswered(final boolean answered) {
+        if(this instanceof Question)
+            ((Question) this).setAnswered(answered);
+        else if(this instanceof Answer)
+            ((Answer) this).setAnswered(answered);
     }
 }

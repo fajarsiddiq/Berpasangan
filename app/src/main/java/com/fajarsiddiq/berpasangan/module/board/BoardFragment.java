@@ -80,8 +80,12 @@ public class BoardFragment extends ModuleFragment {
         return mController.isZonk(id);
     }
 
-    public String getColor(final int id) {
-        return mController.getColor(id);
+    public String getName(final int id) {
+        return mController.getName(id);
+    }
+
+    public String getValue(final int id) {
+        return mController.getValue(id);
     }
 
     public void refreshBoard(final Integer id1, final Integer id2) {

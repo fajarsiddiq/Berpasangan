@@ -6,11 +6,12 @@ package com.fajarsiddiq.berpasangan.module.board;
 public class BoardView {
     private int id;
     private int answered; //0 = unanswered, 1 = answered, 2 = is viewed now, 3 = zonk
-    private String value;
+    private boolean image;
 
-    public BoardView(int id, int answered) {
+    public BoardView(int id, int answered, boolean image) {
         this.id = id;
         this.answered = answered;
+        this.image = image;
     }
 
     public int getId() {
@@ -27,5 +28,13 @@ public class BoardView {
 
     public void setAnswered(int answered) {
         this.answered = answered;
+    }
+
+    public boolean isImage() {
+        return image;
+    }
+
+    public void setImage(boolean image) {
+        this.image = image;
     }
 }

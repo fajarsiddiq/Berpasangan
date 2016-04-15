@@ -9,6 +9,7 @@ import com.fajarsiddiq.berpasangan.sqlite.Item;
 import java.util.List;
 
 import static android.os.Message.obtain;
+import static com.fajarsiddiq.berpasangan.R.array.array_question;
 import static java.lang.String.valueOf;
 import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
@@ -87,13 +88,15 @@ public class BoardController extends ModuleController {
         @Override
         protected Item[] doInBackground(Integer... params) {
             Item[] items = new Item[params[0]*params[1]];
-            final String[] colors = mContext.getResources().getStringArray(array_color);
             int noOfQuestion = items.length / 2;
+            final String[] questions = random(mContext.getResources().getStringArray(array_question), noOfQuestion);
             Question question;
+            Answer answer;
             for(int i = 0; i < noOfQuestion; i++) {
-                question = new Question(colors[i]);
+                question = new Question(valueOf(i), questions[i].split("_")[0], questions[i].split("_")[1]);
+                answer = new Answer(questions[i].split("_")[1]);
                 items[i] = question;
-                items[i+noOfQuestion] = question;
+                items[i+noOfQuestion] = answer;
             }
             if(items.length % 2 != 0)
                 items[items.length-1] = new QuestionZonk("#000000");
@@ -108,6 +111,15 @@ public class BoardController extends ModuleController {
         @Override
         protected void onPostExecute(Item[] items) {
             mHandler.sendMessage(obtain(mHandler, mHandler.mWhatQuestion, x, y, items));
+            StringBuilder sb = new StringBuilder();
+            for(Item item : items) {
+                if(item instanceof Question)
+                    sb.append(item.getName()).append(" ");
+                else if(item instanceof Answer)
+                    sb.append(item.getValue()).append(" ");
+            }
+            Log.i("test", sb.toString());
+
         }
     }
 
@@ -119,27 +131,26 @@ public class BoardController extends ModuleController {
         return same;
     }
 
+    private String[] random(final String[] question, final int noOfQuestion) {
+        List<String> temp = asList(question);
+        shuffle(temp);
+        String[] random = new String[noOfQuestion];
+        for(int i = 0; i < noOfQuestion; i++) {
+            random[i] = temp.get(i);
+        }
+        return random;
+    }
+
     private void matched(final int id1, final int id2) {
         Item item1 = board.getCell(id1), item2 = board.getCell(id2);
-        ((Question) item1).setAnswered(true);
-        ((Question) item2).setAnswered(true);
+        item1.setAnswered(true);
+        item2.setAnswered(true);
         noOfTrue++;
         boolean finish = checkFinish();
         if(finish)
             mHandler.sendEmptyMessage(mHandler.mWhatFinish);
     }
 
-//    private boolean checkFinish() {
-//        for(int i = 0; i < board.getLength(); i++) {
-//            if(board.getCell(i) instanceof Question) {
-//                if(!((Question) board.getCell(i)).isAnswered()) {
-//                    Log.i("testing", String.valueOf(((Question) board.getCell(i)).isAnswered()));
-//                    return false;
-//                }
-//            }
-//        }
-//        return true;
-//    }
     private boolean checkFinish() {
         boolean isFinish = noOfTrue == (x*y) / 2;
         Log.i("Test", "Finish is " + String.valueOf(isFinish));
@@ -150,7 +161,11 @@ public class BoardController extends ModuleController {
         return board.getCell(id) instanceof QuestionZonk;
     }
 
-    public String getColor(final int id) {
+    public String getName(final int id) {
+        return board.getCell(id).getName();
+    }
+
+    public String getValue(final int id) {
         return board.getCell(id).getValue();
     }
 
@@ -159,11 +174,15 @@ public class BoardController extends ModuleController {
         for(int i = 0; i < views.length; i++) {
             Item temp = board.getCell(i);
             int status;
-            if(temp instanceof Question)
+            boolean image = false;
+            if(temp instanceof Question) {
                 status = ((Question) temp).isAnswered() ? 1 : 0;
-            else
+                image = ((Question) temp).isImage();
+            } else if(temp instanceof Answer) {
+                status = ((Answer) temp).isAnswered() ? 1 : 0;
+            } else
                 status = 0;
-            views[i] = new BoardView(i, status);
+            views[i] = new BoardView(i, status, image);
         }
         mHandler.sendMessage(obtain(mHandler, mHandler.mWhatRefresh, views));
     }
@@ -173,18 +192,28 @@ public class BoardController extends ModuleController {
         for(int i = 0; i < views.length; i++) {
             Item temp = board.getCell(i);
             int status;
+            boolean image = false;
+            Log.i("test controller", "Index " + i + " " + temp.getValue());
             if(temp instanceof Question) {
                 if(i == id)
                     status = 2;
                 else
                     status = ((Question) temp).isAnswered() ? 1 : 0;
+                image = ((Question) temp).isImage();
+                Log.i("test", "status = " + status + " image " + valueOf(image));
+            } else if(temp instanceof Answer) {
+                if(i == id)
+                    status = 2;
+                else
+                    status = ((Answer) temp).isAnswered() ? 1 : 0;
+                Log.i("test cont", "status " + status);
             } else {
                 if(i == id)
-                    status =2;
+                    status = 2;
                 else
                     status = 0;
             }
-            views[i] = new BoardView(i, status);
+            views[i] = new BoardView(i, status, image);
         }
         mHandler.sendMessage(obtain(mHandler, mHandler.mWhatRefresh, views));
     }
@@ -194,18 +223,25 @@ public class BoardController extends ModuleController {
         for(int i = 0; i < views.length; i++) {
             Item temp = board.getCell(i);
             int status;
+            boolean image = false;
             if(temp instanceof Question) {
                 if(i == id1 || i == id2)
                     status = 2;
                 else
                     status = ((Question) temp).isAnswered() ? 1 : 0;
+                image = ((Question) temp).isImage();
+            } else if(temp instanceof Answer) {
+                if(i == id1 || i == id2)
+                    status = 2;
+                else
+                    status = ((Answer) temp).isAnswered() ? 1 : 0;
             } else {
                 if(i == id1 || i == id2)
-                    status =2;
+                    status = 2;
                 else
                     status = 0;
             }
-            views[i] = new BoardView(i, status);
+            views[i] = new BoardView(i, status, image);
         }
         mHandler.sendMessage(obtain(mHandler, mHandler.mWhatRefresh, views));
     }
