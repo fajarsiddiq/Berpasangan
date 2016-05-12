@@ -15,7 +15,6 @@ import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 import static java.util.Collections.shuffle;
 import static java.util.Arrays.asList;
-import static com.fajarsiddiq.berpasangan.R.array.array_color;
 import static java.lang.Integer.parseInt;
 
 /**
@@ -23,16 +22,18 @@ import static java.lang.Integer.parseInt;
  */
 public class BoardController extends ModuleController {
     private BoardHandler mHandler;
-    private Board board;
+    private Board mBoard;
     private Thread mThread;
     private int x;
     private int y;
-    private int noOfTrue;
+    private int mNoOfTrue;
+    private int mScore;
 
     public BoardController(BoardFragment fragment) {
         super(fragment.getContext());
         mHandler = new BoardHandler(fragment);
-        noOfTrue = 0;
+        mNoOfTrue = 0;
+        mScore = 0;
     }
 
     public void initTimer(final int duration) {
@@ -48,6 +49,11 @@ public class BoardController extends ModuleController {
     public void stopTimer() {
         if(mThread.isAlive())
             mThread.interrupt();
+    }
+
+    public void updateScore(final int diff) {
+        this.mScore += diff;
+        mHandler.sendMessage(obtain(mHandler, mHandler.mWhatScore, mScore));
     }
 
     private class Timer extends AsyncTask<Integer, Integer, Void> {
@@ -104,7 +110,7 @@ public class BoardController extends ModuleController {
             List<Item> temp = asList(items);
             shuffle(temp);
             items = temp.toArray(new Item[temp.size()]);
-            board = new Board(items);
+            mBoard = new Board(items);
             return items;
         }
 
@@ -124,7 +130,7 @@ public class BoardController extends ModuleController {
     }
 
     public boolean isSame(final int id1, final int id2) {
-        Item item1 = board.getCell(id1), item2 = board.getCell(id2);
+        Item item1 = mBoard.getCell(id1), item2 = mBoard.getCell(id2);
         boolean same = item1.equals(item2);
         if(same)
             matched(id1, id2);
@@ -142,37 +148,37 @@ public class BoardController extends ModuleController {
     }
 
     private void matched(final int id1, final int id2) {
-        Item item1 = board.getCell(id1), item2 = board.getCell(id2);
+        Item item1 = mBoard.getCell(id1), item2 = mBoard.getCell(id2);
         item1.setAnswered(true);
         item2.setAnswered(true);
-        noOfTrue++;
+        mNoOfTrue++;
         boolean finish = checkFinish();
         if(finish)
             mHandler.sendEmptyMessage(mHandler.mWhatFinish);
     }
 
     private boolean checkFinish() {
-        boolean isFinish = noOfTrue == (x*y) / 2;
+        boolean isFinish = mNoOfTrue == (x*y) / 2;
         Log.i("Test", "Finish is " + String.valueOf(isFinish));
         return isFinish;
     }
 
     public boolean isZonk(final int id) {
-        return board.getCell(id) instanceof QuestionZonk;
+        return mBoard.getCell(id) instanceof QuestionZonk;
     }
 
     public String getName(final int id) {
-        return board.getCell(id).getName();
+        return mBoard.getCell(id).getName();
     }
 
     public String getValue(final int id) {
-        return board.getCell(id).getValue();
+        return mBoard.getCell(id).getValue();
     }
 
     public void getView() {
-        BoardView[] views = new BoardView[board.getLength()];
+        BoardView[] views = new BoardView[mBoard.getLength()];
         for(int i = 0; i < views.length; i++) {
-            Item temp = board.getCell(i);
+            Item temp = mBoard.getCell(i);
             int status;
             boolean image = false;
             if(temp instanceof Question) {
@@ -188,9 +194,9 @@ public class BoardController extends ModuleController {
     }
 
     public void getView(final int id) {
-        BoardView[] views = new BoardView[board.getLength()];
+        BoardView[] views = new BoardView[mBoard.getLength()];
         for(int i = 0; i < views.length; i++) {
-            Item temp = board.getCell(i);
+            Item temp = mBoard.getCell(i);
             int status;
             boolean image = false;
             Log.i("test controller", "Index " + i + " " + temp.getValue());
@@ -219,9 +225,9 @@ public class BoardController extends ModuleController {
     }
 
     public void getView(final int id1, final int id2) {
-        BoardView[] views = new BoardView[board.getLength()];
+        BoardView[] views = new BoardView[mBoard.getLength()];
         for(int i = 0; i < views.length; i++) {
-            Item temp = board.getCell(i);
+            Item temp = mBoard.getCell(i);
             int status;
             boolean image = false;
             if(temp instanceof Question) {

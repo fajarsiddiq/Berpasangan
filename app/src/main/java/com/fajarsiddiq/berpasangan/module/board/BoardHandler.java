@@ -17,22 +17,21 @@ import com.fajarsiddiq.berpasangan.sqlite.Item;
 
 import static android.view.LayoutInflater.from;
 import static com.fajarsiddiq.berpasangan.R.drawable.drawable_tile_background;
-import static com.fajarsiddiq.berpasangan.R.string.abc_activity_chooser_view_see_all;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_message;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_positive;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_title;
 import static com.fajarsiddiq.berpasangan.R.layout.layout_tile;
-import static android.graphics.Color.parseColor;
 import static android.view.View.OnClickListener;
+import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_time_remaining;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timeout_message;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timeout_positive;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timeout_title;
 import static com.fajarsiddiq.berpasangan.helper.SnackBarHelper.useSnackBar;
-import static com.fajarsiddiq.berpasangan.R.color.color_grey;
 import static com.fajarsiddiq.berpasangan.R.drawable.drawable_check;
 import static android.os.Build.VERSION.SDK_INT;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 import static com.fajarsiddiq.berpasangan.R.id.id_tile_text_view;
+import static java.lang.String.valueOf;
 
 /**
  * Created by Muhammad Fajar on 28/03/2016.
@@ -43,6 +42,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
     public int mWhatQuestion;
     public int mWhatFinish;
     public int mWhatRefresh;
+    public int mWhatScore;
 
     private View first;
     private View second;
@@ -54,6 +54,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
         mWhatQuestion = mWhat + 3;
         mWhatFinish = mWhat + 4;
         mWhatRefresh = mWhat + 5;
+        mWhatScore = mWhat + 6;
         first = null;
         second = null;
     }
@@ -62,7 +63,8 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
     public void handleMessage(Message message) {
         final BoardFragment fragment = (BoardFragment) mFragment;
         if(message.what == mWhatTimer) {
-            fragment.getTimerTextView().setText((String) message.obj);
+            if(fragment.getActivity() != null)
+                fragment.getTimerTextView().setText(new StringBuilder(fragment.getString(string_board_fragment_time_remaining)).append(" ").append((String) message.obj));
         } else if(message.what == mWhatTimeout) {
             final BoardActivity activity = (BoardActivity) fragment.getActivity();
             if(activity != null) {
@@ -120,6 +122,8 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
                 }
             });
             builder.create().show();
+        } else if(message.what == mWhatScore) {
+            fragment.getScoreTextView().setText(valueOf(message.obj));
         }
     }
 
@@ -139,10 +143,12 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
 
             if (fragment.isZonk(first.getId()) || fragment.isZonk(second.getId())) {
                 useSnackBar(fragment.getContext(), fragment.getActivity(), "It's zonk. Minus 5.");
+                fragment.updateScore(-5);
             }
 
             if (fragment.isSame(first.getId(), second.getId())) {
                 useSnackBar(fragment.getContext(), fragment.getActivity(), "Good! Plus 10.");
+                fragment.updateScore(10);
 //                refreshBoard(null, null);
             }
             first.setOnClickListener(this);
