@@ -27,24 +27,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:gravity="center"
         android:layout_centerInParent="true">
 
-        <Button
-            android:id="@+id/id_main_fragment_start_button"
-            style="@style/style_main_menu_button"
-            android:text="@string/string_main_activity_start_button"/>
+        <ImageView
+            android:id="@+id/id_main_fragment_start_image_view"
+            style="@style/style_main_menu_image_view"
+            android:src="@drawable/drawable_start"/>
 
-        <Button
-            android:id="@+id/id_main_fragment_help_button"
-            style="@style/style_main_menu_button"
-            android:text="@string/string_main_activity_help_button"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal">
 
-        <Button
-            android:id="@+id/id_main_fragment_exit_button"
-            style="@style/style_main_menu_button"
-            android:text="@string/string_main_activity_exit_button"/>
+            <ImageView
+                android:id="@+id/id_main_fragment_statistic_image_view"
+                style="@style/style_main_menu_image_view_1"
+                android:src="@drawable/drawable_statistics"
+                android:layout_marginRight="20dp"/>
 
-
+            <ImageView
+                android:id="@+id/id_main_fragment_extra_image_view"
+                style="@style/style_main_menu_image_view_1"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/drawable_extras"/>
+        </LinearLayout>
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/id_main_fragment_help_image_view"
+            style="@style/style_main_menu_image_view_2"
+            android:src="@drawable/drawable_setting"
+            android:layout_alignParentLeft="true"/>
+
+        <ImageView
+            android:id="@+id/id_main_fragment_exit_image_view"
+            style="@style/style_main_menu_image_view_2"
+            android:src="@drawable/drawable_exit"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
 </RelativeLayout>
