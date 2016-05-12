@@ -1,6 +1,8 @@
 package com.fajarsiddiq.berpasangan.module.board;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +19,9 @@ import static com.fajarsiddiq.berpasangan.R.id.id_board_fragment_score_text_view
 import static com.fajarsiddiq.berpasangan.R.layout.layout_board_fragment;
 import static com.fajarsiddiq.berpasangan.R.id.id_board_fragment_timer_text_view;
 import static android.view.View.OnClickListener;
+import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_time_pause;
+import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_time_pause_title;
+import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_time_resume;
 
 /**
  * Created by Muhammad Fajar on 28/03/2016.
@@ -72,10 +77,6 @@ public class BoardFragment extends ModuleFragment implements OnClickListener {
         mController.initQuestion(x, y);
     }
 
-    public void stopTimer() {
-        mController.stopTimer();
-    }
-
     public boolean isSame(final int id1, final int id2) {
         return mController.isSame(id1, id2);
     }
@@ -105,11 +106,28 @@ public class BoardFragment extends ModuleFragment implements OnClickListener {
         mController.updateScore(diff);
     }
 
+    public void resumeTimer() {
+        mController.resumeTimer();
+        mPauseImageView.setOnClickListener(this);
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case id_board_fragment_pause_image_view:
-                Log.i("Test", "Pause pressed");
+                mController.pauseTimer();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage(getString(string_board_fragment_time_pause))
+                        .setTitle(getString(string_board_fragment_time_pause_title));
+                builder.setPositiveButton(getString(string_board_fragment_time_resume), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        resumeTimer();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.setCancelable(false);
+                dialog.show();
+                mPauseImageView.setOnClickListener(null);
                 break;
         }
 

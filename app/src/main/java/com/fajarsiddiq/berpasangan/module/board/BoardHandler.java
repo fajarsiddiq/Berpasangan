@@ -22,6 +22,7 @@ import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_title;
 import static com.fajarsiddiq.berpasangan.R.layout.layout_tile;
 import static android.view.View.OnClickListener;
+import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_time_pause;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_time_remaining;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timeout_message;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timeout_positive;

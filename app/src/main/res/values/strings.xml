@@ -3,7 +3,9 @@
     <string name="string_main_activity_title">Berpasangan</string>
     <string name="string_main_activity_subtitle">Semua ada pasangannya.</string>
     <string name="string_main_activity_start_button">Mulai</string>
-    <string name="string_main_activity_help_button">Bantuan</string>
+    <string name="string_main_activity_statistic_button">Statistik</string>
+    <string name="string_main_activity_extra_button">Ekstra</string>
+    <string name="string_main_activity_setting_button">Pengaturan</string>
     <string name="string_main_activity_exit_button">Keluar</string>
     <string name="string_main_activity_exit_prompt">Apakah Anda yakin ingin keluar?</string>
     <string name="string_main_activity_exit_prompt_title">Keluar</string>
@@ -11,10 +13,15 @@
     <string name="string_main_activity_exit_prompt_negative">Tidak</string>
     <string name="string_main_activity_select_level_message">Silahkan pilih ukuran tile untuk memulai permainan :</string>
     <string name="string_main_activity_select_level_title">Pilih Ukuran Tile</string>
+    <string name="string_board_fragment_time_remaining">Sisa waktu :</string>
+    <string name="string_board_fragment_time_pause_title">Berpasangan</string>
+    <string name="string_board_fragment_time_pause">Permainan dihentikan sementara.</string>
+    <string name="string_board_fragment_time_resume">Lanjutkan</string>
     <string name="string_board_fragment_timeout_title">Game Over!</string>
     <string name="string_board_fragment_timeout_message">Waktu Anda telah habis. Permainan usai!</string>
     <string name="string_board_fragment_finish_title">Selamat!</string>
     <string name="string_board_fragment_finish_message">Anda berhasil menyelesaikan permainan.</string>
     <string name="string_board_fragment_finish_positive">Ke Menu Awal</string>
     <string name="string_board_fragment_timeout_positive">Lihat Skor Akhir</string>
+    <string name="string_sqlite_database_name">asdf</string>
 </resources>

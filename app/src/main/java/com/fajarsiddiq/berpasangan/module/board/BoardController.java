@@ -3,6 +3,7 @@ package com.fajarsiddiq.berpasangan.module.board;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.fajarsiddiq.berpasangan.helper.RunnableHelper;
 import com.fajarsiddiq.berpasangan.module.ModuleController;
 import com.fajarsiddiq.berpasangan.sqlite.Item;
 
@@ -15,7 +16,6 @@ import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 import static java.util.Collections.shuffle;
 import static java.util.Arrays.asList;
-import static java.lang.Integer.parseInt;
 
 /**
  * Created by Muhammad Fajar on 28/03/2016.
@@ -28,6 +28,8 @@ public class BoardController extends ModuleController {
     private int y;
     private int mNoOfTrue;
     private int mScore;
+    private int mTimeRemaining;
+    private boolean isRun;
 
     public BoardController(BoardFragment fragment) {
         super(fragment.getContext());
@@ -37,6 +39,7 @@ public class BoardController extends ModuleController {
     }
 
     public void initTimer(final int duration) {
+        isRun = true;
         new Timer().execute(duration);
     }
 
@@ -48,7 +51,16 @@ public class BoardController extends ModuleController {
 
     public void stopTimer() {
         if(mThread.isAlive())
-            mThread.interrupt();
+            mThread.currentThread().interrupt();
+    }
+
+    public void pauseTimer() {
+        isRun = false;
+    }
+
+    public void resumeTimer() {
+        isRun = true;
+        new Timer().execute(mTimeRemaining);
     }
 
     public void updateScore(final int diff) {
@@ -64,16 +76,16 @@ public class BoardController extends ModuleController {
                 int time = params[0];
                 @Override
                 public void run() {
-                    while (!currentThread().isInterrupted()) {
+                    while (isRun) {
                         publishProgress(time);
                         try {
                             sleep(1000);
                         } catch (InterruptedException e) {
-
+                            Log.i("Test", "Exception");
                         }
                         --time;
                         if(time < 0)
-                            currentThread().interrupt();
+                            isRun = false;
                     }
                 }
             });
@@ -84,6 +96,7 @@ public class BoardController extends ModuleController {
         @Override
         protected void onProgressUpdate(Integer... values) {
             mHandler.sendMessage(obtain(mHandler, mHandler.mWhatTimer, valueOf(values[0])));
+            mTimeRemaining = values[0];
             if(values[0] == 0)
                 mHandler.sendEmptyMessage(mHandler.mWhatTimeout);
         }
