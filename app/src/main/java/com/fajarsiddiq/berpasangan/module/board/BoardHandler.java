@@ -2,14 +2,13 @@ package com.fajarsiddiq.berpasangan.module.board;
 
 import android.content.DialogInterface;
 import android.graphics.Point;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.fajarsiddiq.berpasangan.helper.Drawable;
@@ -18,23 +17,18 @@ import com.fajarsiddiq.berpasangan.sqlite.Item;
 
 import static android.view.LayoutInflater.from;
 import static com.fajarsiddiq.berpasangan.R.drawable.drawable_tile;
-import static com.fajarsiddiq.berpasangan.R.drawable.drawable_tile_background;
 import static com.fajarsiddiq.berpasangan.R.id.id_tile_image_view;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_message;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_positive;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_title;
 import static com.fajarsiddiq.berpasangan.R.layout.layout_tile;
 import static android.view.View.OnClickListener;
-import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_time_pause;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_time_remaining;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timeout_message;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timeout_positive;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timeout_title;
 import static com.fajarsiddiq.berpasangan.helper.SnackBarHelper.useSnackBar;
 import static com.fajarsiddiq.berpasangan.R.drawable.drawable_check;
-import static android.os.Build.VERSION.SDK_INT;
-import static android.os.Build.VERSION_CODES.JELLY_BEAN;
-import static com.fajarsiddiq.berpasangan.R.id.id_tile_text_view;
 import static java.lang.String.valueOf;
 
 /**
@@ -94,12 +88,11 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             final GridLayout gridLayout = fragment.getGridLayout();
 
             View view;
+            int dim = screenWidth / ((x > y) ? x : y);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(dim, dim);
             for(int i = 0; i < items.length; i++) {
                 view = from(fragment.getContext()).inflate(layout_tile, null);
-                int dim = screenWidth / ((x > y) ? x : y);
-                Log.i("Test", "(Dim, width, height, x, y) = " + dim + ", " + screenWidth + ", " + screenHeight +", " + x + ", " + y);
-                view.setMinimumHeight(dim);
-                view.setMinimumWidth(dim);
+                view.setLayoutParams(layoutParams);
 //                view.setMinimumWidth(screenWidth / ((x > y) ? x : y));
 //                view.setMinimumHeight(screenWidth / ((x > y) ? x : y));
                 //view.setBackgroundColor(parseColor(items[ii].getValue())); //http://stackoverflow.com/questions/2173936/how-to-set-background-color-of-a-view
@@ -166,9 +159,10 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
         }
     }
 
-    private String getName(final int id) {
+    private String getImageName(final int id) {
         BoardFragment fragment = (BoardFragment) mFragment;
-        return fragment.getName(id);
+        Item temp = fragment.getCell(id);
+        return temp instanceof Question ? temp.getName() : temp.getValue();
     }
 
     private String getValue(final int id) {
@@ -189,26 +183,23 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
 //                    view.setBackgroundDrawable(mFragment.getResources().getDrawable(drawable_tile_background));
 //                else
 //                    view.setBackground(mFragment.getResources().getDrawable(drawable_tile_background));
-            } else
-                ((TextView) view.findViewById(id_tile_text_view)).setText(null);
+            }
         } else if(status == 1) {
             ((ImageView) view.findViewById(id_tile_image_view)).setImageResource(drawable_check);
             view.setOnClickListener(null);
-            ((TextView) view.findViewById(id_tile_text_view)).setText(null);
         } else if(status == 2) {
             BoardFragment fragment = (BoardFragment) mFragment;
             // previously when using color, show color of selected tiles
             // view.setBackgroundColor(parseColor(getColor(id)));
             if(image) {
-                int drawableId = Drawable.getDrawable(mFragment.getContext(), getName(id));
-                Log.i("test", getName(id));
+                int drawableId = Drawable.getDrawable(mFragment.getContext(), getImageName(id));
+                Log.i("test", getImageName(id));
                 ((ImageView) view.findViewById(id_tile_image_view)).setImageResource(drawableId);
 //                if (SDK_INT < JELLY_BEAN) //http://stackoverflow.com/questions/12523005/how-set-background-drawable-programmatically-in-android
 //                    view.setBackgroundDrawable(mFragment.getResources().getDrawable(drawableId));
 //                else
 //                    view.setBackground(mFragment.getResources().getDrawable(drawableId));
-            } else
-                ((TextView) view.findViewById(id_tile_text_view)).setText(getValue(id));
+            }
         }
     }
 }

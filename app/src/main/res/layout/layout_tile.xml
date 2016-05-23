@@ -11,10 +11,4 @@
         android:layout_height="match_parent"
         android:src="@drawable/drawable_tile"/>
 
-    <TextView
-        android:id="@+id/id_tile_text_view"
-        style="@style/style_wrap_content"
-        android:textColor="@color/color_primary_dark"
-        android:gravity="center"/>
-
 </LinearLayout>

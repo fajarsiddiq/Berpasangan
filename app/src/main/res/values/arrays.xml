@@ -18,46 +18,56 @@
         <item>#795548</item>
     </string-array>
     
+    <!--<string-array name="array_question">-->
+        <!--<item>parthenon_.GR</item>-->
+        <!--<item>torii_.JP</item>-->
+        <!--<item>atomium_.BE</item>-->
+        <!--<item>bluemosque_.TR</item>-->
+        <!--<item>burjkhalifa_.AE</item>-->
+        <!--<item>bigben_.UK</item>-->
+        <!--<item>kaaba_.SA</item>-->
+        <!--<item>liberty_.us</item>-->
+        <!--<item>lincoln_.us</item>-->
+        <!--<item>eiffel_.FR</item>-->
+        <!--<item>coliseum_.IT</item>-->
+        <!--<item>pisa_.IT</item>-->
+        <!--<item>hollywood_.us</item>-->
+        <!--<item>londoneye_.UK</item>-->
+        <!--<item>monas_.ID</item>-->
+        <!--<item>mpr_.ID</item>-->
+        <!--<item>nationaltower_.CA</item>-->
+        <!--<item>obelisk_.us</item>-->
+        <!--<item>sphinx_.EG</item>-->
+        <!--<item>angkorwat_.KH</item>-->
+        <!--<item>stonehenge_.UK</item>-->
+        <!--<item>twintowers_.MY</item>-->
+        <!--<item>windmill_.NL</item>-->
+        <!--<item>saintbasil_.RU</item>-->
+        <!--<item>operahouse_.AU</item>-->
+        <!--<item>rushmore_.us</item>-->
+        <!--<item>pyramid_.EG</item>-->
+        <!--<item>tajmahal_.IN</item>-->
+        <!--<item>merlion_.SG</item>-->
+        <!--<item>greatwall_.CN</item>-->
+        <!--<item>greatbuddha_.JP</item>-->
+        <!--<item>empirestate_.us</item>-->
+        <!--<item>christ_.BR</item>-->
+        <!--<item>spaceneedle_.us</item>-->
+        <!--<item>louvrepyramid_.FR</item>-->
+        <!--<item>machupicchu_.PE</item>-->
+        <!--<item>mayapyramid_.MX</item>-->
+        <!--<item>borobudur_.ID</item>-->
+        <!--<item>moai_.PF</item>-->
+    <!--</string-array>-->
+
     <string-array name="array_question">
-        <item>parthenon_.GR</item>
-        <item>torii_.JP</item>
-        <item>atomium_.BE</item>
-        <item>bluemosque_.TR</item>
-        <item>burjkhalifa_.AE</item>
-        <item>bigben_.UK</item>
-        <item>kaaba_.SA</item>
-        <item>liberty_.US</item>
-        <item>lincoln_.US</item>
-        <item>eiffel_.FR</item>
-        <item>coliseum_.IT</item>
-        <item>pisa_.IT</item>
-        <item>hollywood_.US</item>
-        <item>londoneye_.UK</item>
-        <item>monas_.ID</item>
-        <item>mpr_.ID</item>
-        <item>nationaltower_.CA</item>
-        <item>obelisk_.SA</item>
-        <item>sphinx_.EG</item>
-        <item>angkorwat_.KH</item>
-        <item>stonehenge_.UK</item>
-        <item>twintowers_.MY</item>
-        <item>windmill_.NL</item>
-        <item>saintbasil_.RU</item>
-        <item>operahouse_.AU</item>
-        <item>rushmore_.US</item>
-        <item>pyramid_.EG</item>
-        <item>tajmahal_.IN</item>
-        <item>merlion_.SG</item>
-        <item>greatwall_.CN</item>
-        <item>greatbuddha_.JP</item>
-        <item>empirestate_.SA</item>
-        <item>christ_.BR</item>
-        <item>spaceneedle_.SA</item>
-        <item>louvrepyramid_.FR</item>
-        <item>machupicchu_.PE</item>
-        <item>mayapyramid_.MX</item>
-        <item>borobudur_.ID</item>
-        <item>moai_.PF</item>
+        <item>liberty_us</item>
+        <item>lincoln_us</item>
+        <item>hollywood_us</item>
+        <item>obelisk_us</item>
+        <item>rushmore_us</item>
+        <item>empirestate_us</item>
+        <item>spaceneedle_us</item>
     </string-array>
 
 </resources>

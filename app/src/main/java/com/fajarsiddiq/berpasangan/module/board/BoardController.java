@@ -144,10 +144,13 @@ public class BoardController extends ModuleController {
 
     public boolean isSame(final int id1, final int id2) {
         Item item1 = mBoard.getCell(id1), item2 = mBoard.getCell(id2);
-        boolean same = item1.equals(item2);
-        if(same)
-            matched(id1, id2);
-        return same;
+        if((item1 instanceof Question && item2 instanceof Answer) || (item1 instanceof Answer && item2 instanceof Question)) {
+            boolean same = item1.equals(item2);
+            if(same)
+                matched(id1, id2);
+            return same;
+        }
+        return false;
     }
 
     private String[] random(final String[] question, final int noOfQuestion) {
@@ -180,8 +183,8 @@ public class BoardController extends ModuleController {
         return mBoard.getCell(id) instanceof QuestionZonk;
     }
 
-    public String getName(final int id) {
-        return mBoard.getCell(id).getName();
+    public Item getCell(final int id) {
+        return mBoard.getCell(id);
     }
 
     public String getValue(final int id) {
@@ -193,7 +196,7 @@ public class BoardController extends ModuleController {
         for(int i = 0; i < views.length; i++) {
             Item temp = mBoard.getCell(i);
             int status;
-            boolean image = false;
+            boolean image = true;
             if(temp instanceof Question) {
                 status = ((Question) temp).isAnswered() ? 1 : 0;
                 image = ((Question) temp).isImage();
@@ -211,7 +214,7 @@ public class BoardController extends ModuleController {
         for(int i = 0; i < views.length; i++) {
             Item temp = mBoard.getCell(i);
             int status;
-            boolean image = false;
+            boolean image = true;
             Log.i("test controller", "Index " + i + " " + temp.getValue());
             if(temp instanceof Question) {
                 if(i == id)
@@ -242,7 +245,7 @@ public class BoardController extends ModuleController {
         for(int i = 0; i < views.length; i++) {
             Item temp = mBoard.getCell(i);
             int status;
-            boolean image = false;
+            boolean image = true;
             if(temp instanceof Question) {
                 if(i == id1 || i == id2)
                     status = 2;

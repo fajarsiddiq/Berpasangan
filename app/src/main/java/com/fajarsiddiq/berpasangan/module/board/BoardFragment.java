@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fajarsiddiq.berpasangan.module.ModuleFragment;
+import com.fajarsiddiq.berpasangan.sqlite.Item;
 
 import static com.fajarsiddiq.berpasangan.R.id.id_board_fragment_grid_layout;
 import static com.fajarsiddiq.berpasangan.R.id.id_board_fragment_pause_image_view;
@@ -85,8 +85,8 @@ public class BoardFragment extends ModuleFragment implements OnClickListener {
         return mController.isZonk(id);
     }
 
-    public String getName(final int id) {
-        return mController.getName(id);
+    public Item getCell(final int id) {
+        return mController.getCell(id);
     }
 
     public String getValue(final int id) {
