@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayout;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +17,9 @@ import com.fajarsiddiq.berpasangan.module.ModuleHandler;
 import com.fajarsiddiq.berpasangan.sqlite.Item;
 
 import static android.view.LayoutInflater.from;
+import static com.fajarsiddiq.berpasangan.R.drawable.drawable_tile;
 import static com.fajarsiddiq.berpasangan.R.drawable.drawable_tile_background;
+import static com.fajarsiddiq.berpasangan.R.id.id_tile_image_view;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_message;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_positive;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_title;
@@ -77,7 +80,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
                             public void onClick(DialogInterface dialog, int which) {
                                 Toast.makeText(activity, "Sabar ya, belum diimplementasi", Toast.LENGTH_SHORT).show();
                             }
-                        }).create().show();
+                        }).setCancelable(false).create().show();
             }
         } else if(message.what == mWhatQuestion) {
             Point size = new Point();
@@ -93,8 +96,12 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             View view;
             for(int i = 0; i < items.length; i++) {
                 view = from(fragment.getContext()).inflate(layout_tile, null);
-                view.setMinimumWidth(screenWidth / ((x > y) ? x : y));
-                view.setMinimumHeight(screenWidth / ((x > y) ? x : y));
+                int dim = screenWidth / ((x > y) ? x : y);
+                Log.i("Test", "(Dim, width, height, x, y) = " + dim + ", " + screenWidth + ", " + screenHeight +", " + x + ", " + y);
+                view.setMinimumHeight(dim);
+                view.setMinimumWidth(dim);
+//                view.setMinimumWidth(screenWidth / ((x > y) ? x : y));
+//                view.setMinimumHeight(screenWidth / ((x > y) ? x : y));
                 //view.setBackgroundColor(parseColor(items[ii].getValue())); //http://stackoverflow.com/questions/2173936/how-to-set-background-color-of-a-view
                 view.setId(i);
                 view.setOnClickListener(this);
@@ -177,14 +184,15 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
     private void setBackground(final View view, final int id, final int status, final boolean image) {
         if(status == 0) {
             if(image) {
-                if (SDK_INT < JELLY_BEAN) //http://stackoverflow.com/questions/12523005/how-set-background-drawable-programmatically-in-android
-                    view.setBackgroundDrawable(mFragment.getResources().getDrawable(drawable_tile_background));
-                else
-                    view.setBackground(mFragment.getResources().getDrawable(drawable_tile_background));
+                ((ImageView) view.findViewById(id_tile_image_view)).setImageResource(drawable_tile);
+//                if (SDK_INT < JELLY_BEAN) //http://stackoverflow.com/questions/12523005/how-set-background-drawable-programmatically-in-android
+//                    view.setBackgroundDrawable(mFragment.getResources().getDrawable(drawable_tile_background));
+//                else
+//                    view.setBackground(mFragment.getResources().getDrawable(drawable_tile_background));
             } else
                 ((TextView) view.findViewById(id_tile_text_view)).setText(null);
         } else if(status == 1) {
-            view.setBackgroundResource(drawable_check);
+            ((ImageView) view.findViewById(id_tile_image_view)).setImageResource(drawable_check);
             view.setOnClickListener(null);
             ((TextView) view.findViewById(id_tile_text_view)).setText(null);
         } else if(status == 2) {
@@ -194,10 +202,11 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             if(image) {
                 int drawableId = Drawable.getDrawable(mFragment.getContext(), getName(id));
                 Log.i("test", getName(id));
-                if (SDK_INT < JELLY_BEAN) //http://stackoverflow.com/questions/12523005/how-set-background-drawable-programmatically-in-android
-                    view.setBackgroundDrawable(mFragment.getResources().getDrawable(drawableId));
-                else
-                    view.setBackground(mFragment.getResources().getDrawable(drawableId));
+                ((ImageView) view.findViewById(id_tile_image_view)).setImageResource(drawableId);
+//                if (SDK_INT < JELLY_BEAN) //http://stackoverflow.com/questions/12523005/how-set-background-drawable-programmatically-in-android
+//                    view.setBackgroundDrawable(mFragment.getResources().getDrawable(drawableId));
+//                else
+//                    view.setBackground(mFragment.getResources().getDrawable(drawableId));
             } else
                 ((TextView) view.findViewById(id_tile_text_view)).setText(getValue(id));
         }

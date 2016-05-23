@@ -1,0 +1,15 @@
+Berpasangan
+
+v0.1
+- Basic working game, still using PNG as image and text as its pair
+- Timer and time out is implemented
+- No score
+
+v0.2 (Current)
+- Re-design main menu
+- Using SVG as assets
+- Full image
+- Score alredy implemented
+- Use database for storing past scores
+- High score
+
