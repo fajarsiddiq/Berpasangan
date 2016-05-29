@@ -1,23 +1,95 @@
 package com.fajarsiddiq.berpasangan.module.result;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.fajarsiddiq.berpasangan.module.ModuleFragment;
+
+import static android.view.View.OnClickListener;
+import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_accuracy_result_text_view;
+import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_coin_result_text_view;
+import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_correct_result_text_view;
+import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_time_left_result_text_view;
+import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_total_score_result_text_view;
+import static com.fajarsiddiq.berpasangan.R.layout.layout_result_fragment;
+import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_high_score_button;
+import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_main_menu_button;
 
 /**
  * Created by Muhammad Fajar on 28/05/2016.
  */
-public class ResultFragment extends ModuleFragment {
+public class ResultFragment extends ModuleFragment implements OnClickListener {
+    private Button mHighScoreButton;
+    private Button mMainMenuButton;
     private ResultController mController;
+    private TextView mCorrectTextView;
+    private TextView mAccuracyTextView;
+    private TextView mTimeLeftTextView;
+    private TextView mScoreTextView;
+    private TextView mCoinTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(0, null);
-        mController = new ResultController(this);
+        final View view = inflater.inflate(layout_result_fragment, null);
+        mHighScoreButton = (Button) view.findViewById(id_result_fragment_high_score_button);
+        mHighScoreButton.setOnClickListener(this);
+        mMainMenuButton = (Button) view.findViewById(id_result_fragment_main_menu_button);
+        mMainMenuButton.setOnClickListener(this);
+        mAccuracyTextView = (TextView) view.findViewById(id_result_fragment_accuracy_result_text_view);
+        mCoinTextView = (TextView) view.findViewById(id_result_fragment_coin_result_text_view); 
+        mCorrectTextView = (TextView) view.findViewById(id_result_fragment_correct_result_text_view);
+        mScoreTextView = (TextView) view.findViewById(id_result_fragment_total_score_result_text_view);
+        mTimeLeftTextView = (TextView) view.findViewById(id_result_fragment_time_left_result_text_view); 
+        refreshData();
         return view;
+    }
+
+    public Button getHighScoreButton() {
+        return mHighScoreButton;
+    }
+
+    public Button getMainMenuButton() {
+        return mMainMenuButton;
+    }
+
+    public ResultController getController() {
+        return mController;
+    }
+
+    public TextView getCorrectTextView() {
+        return mCorrectTextView;
+    }
+
+    public TextView getAccuracyTextView() {
+        return mAccuracyTextView;
+    }
+
+    public TextView getTimeLeftTextView() {
+        return mTimeLeftTextView;
+    }
+
+    public TextView getScoreTextView() {
+        return mScoreTextView;
+    }
+
+    public TextView getCoinTextView() {
+        return mCoinTextView;
+    }
+
+    @Override
+    public void onClick(final View view) {
+        if(view.getId() == id_result_fragment_high_score_button) {
+            //Not implemented yet
+        } else if(view.getId() == id_result_fragment_main_menu_button) {
+           getActivity().finish();
+        }
+    }
+
+    private void refreshData() {
+        int [] data = getActivity().getIntent().getIntArrayExtra(ResultActivity.data);
     }
 }

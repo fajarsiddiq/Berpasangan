@@ -118,7 +118,7 @@ public class BoardController extends ModuleController {
                 items[i+noOfQuestion] = answer;
             }
             if(items.length % 2 != 0)
-                items[items.length-1] = new QuestionZonk("#000000");
+                items[items.length-1] = new QuestionZonk("drawable_zonk");
 
             List<Item> temp = asList(items);
             shuffle(temp);

@@ -10,4 +10,6 @@
     <color name="color_teal">#009688</color>
     <color name="color_grey">#9E9E9E</color>
     <color name="color_grey_2">#E0E0E0</color>
+    <color name="color_brown">#795548</color>
+    <color name="color_light_green">#8BC34A</color>
 </resources>

@@ -23,5 +23,15 @@
     <string name="string_board_fragment_finish_message">Anda berhasil menyelesaikan permainan.</string>
     <string name="string_board_fragment_finish_positive">Ke Menu Awal</string>
     <string name="string_board_fragment_timeout_positive">Lihat Skor Akhir</string>
-    <string name="string_sqlite_database_name">asdf</string>
+    <string name="string_result_fragment_title">Hasil Akhir</string>
+    <string name="string_result_fragment_correct_hint">Jumlah Benar</string>
+    <string name="string_result_fragment_correct_result">%d dari %d</string>
+    <string name="string_result_fragment_accuracy_hint">Akurasi</string>
+    <string name="string_result_fragment_accuracy_result">%d persen</string>
+    <string name="string_result_fragment_time_left_hint">Sisa Waktu</string>
+    <string name="string_result_fragment_time_left_result">%d detik</string>
+    <string name="string_result_fragment_score_hint">Total Skor</string>
+    <string name="string_result_fragment_coin_hint">Koin Diperoleh</string>
+    <string name="string_result_fragment_high_score_hint">Daftar Skor</string>
+    <string name="string_result_fragment_main_menu_hint">Tutup</string>
 </resources>

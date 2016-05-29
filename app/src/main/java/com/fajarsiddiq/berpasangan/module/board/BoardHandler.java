@@ -1,18 +1,18 @@
 package com.fajarsiddiq.berpasangan.module.board;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayout;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.fajarsiddiq.berpasangan.helper.Drawable;
 import com.fajarsiddiq.berpasangan.module.ModuleHandler;
+import com.fajarsiddiq.berpasangan.module.result.ResultActivity;
 import com.fajarsiddiq.berpasangan.sqlite.Item;
 
 import static android.view.LayoutInflater.from;
@@ -30,6 +30,7 @@ import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timeout
 import static com.fajarsiddiq.berpasangan.helper.SnackBarHelper.useSnackBar;
 import static com.fajarsiddiq.berpasangan.R.drawable.drawable_check;
 import static java.lang.String.valueOf;
+import static java.lang.Integer.parseInt;
 
 /**
  * Created by Muhammad Fajar on 28/03/2016.
@@ -72,7 +73,8 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
                         .setPositiveButton(fragment.getString(string_board_fragment_timeout_positive), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(activity, "Sabar ya, belum diimplementasi", Toast.LENGTH_SHORT).show();
+                                activity.startActivity(new Intent(activity, ResultActivity.class).putExtra(ResultActivity.data, new int[]{BoardActivity.attemp, BoardActivity.answered, BoardActivity.totalQuestion, parseInt(fragment.getTimerTextView().toString())}));
+                                activity.finish();
                             }
                         }).setCancelable(false).create().show();
             }
@@ -88,7 +90,9 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             final GridLayout gridLayout = fragment.getGridLayout();
 
             View view;
-            int dim = screenWidth / ((x > y) ? x : y);
+            int temp = (x > y) ? x : y;
+            temp = temp > 5 ? 5 : temp;
+            int dim = screenWidth / temp;
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(dim, dim);
             for(int i = 0; i < items.length; i++) {
                 view = from(fragment.getContext()).inflate(layout_tile, null);
@@ -132,12 +136,12 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
     public void onClick(View view) {
         BoardFragment fragment = (BoardFragment) mFragment;
         if(first == null && second == null) {
-            Log.i("test handler", "" + view.getId());
+            BoardActivity.attemp =+ 1;
             refreshBoard(view.getId(), null);
             first = view;
             first.setOnClickListener(null);
         } else if(second == null) {
-            Log.i("test handler", "" + view.getId());
+            BoardActivity.attemp =+ 1;
             refreshBoard(first.getId(), view.getId());
             second = view;
             second.setOnClickListener(null);
@@ -150,6 +154,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             if (fragment.isSame(first.getId(), second.getId())) {
                 useSnackBar(fragment.getContext(), fragment.getActivity(), "Good! Plus 10.");
                 fragment.updateScore(10);
+                BoardActivity.answered =+ 1;
 //                refreshBoard(null, null);
             }
             first.setOnClickListener(this);

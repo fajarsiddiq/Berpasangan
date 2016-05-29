@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <fragment
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/id_result_activity_fragment"
     android:name="com.fajarsiddiq.berpasangan.module.result.ResultFragment"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    style="match_parent"/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/style_match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/style_match_parent"
+    android:background="@color/color_grey">
 
     <TextView
         android:id="@+id/id_result_fragment_title_text_view"
@@ -12,14 +13,14 @@
         android:padding="5dp"
         android:layout_margin="10dp"
         android:layout_alignParentTop="true"
-        android:text="Permainan Berakhir"/>
+        android:text="@string/string_result_fragment_title"
+        android:textColor="@color/color_white"/>
 
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:layout_below="@+id/id_result_fragment_title_text_view"
        android:layout_above="@+id/id_result_fragment_navigation_linear_layout"
-       android:padding="10dp"
        android:orientation="vertical">
 
        <LinearLayout
@@ -32,129 +33,159 @@
                android:layout_height="0dp"
                android:layout_width="match_parent"
                android:layout_weight="1"
-               android:padding="5dp"
-               android:orientation="horizontal">
+               android:orientation="horizontal"
+               android:background="@color/color_accent">
 
                <TextView
                    android:layout_width="0dp"
                    android:layout_weight="1"
                    android:layout_height="match_parent"
-                   android:gravity="center"
-                   android:text="Jumlah Benar"/>
+                   style="@style/style_result_fragment_text"
+                   android:text="@string/string_result_fragment_correct_hint"/>
+
+               <ImageView
+                   android:layout_width="0dp"
+                   android:layout_weight="0.5"
+                   android:layout_height="match_parent"
+                   android:src="@drawable/drawable_correct"
+                   android:padding="5dp"
+                   android:layout_marginLeft="10dp"
+                   android:layout_marginRight="10dp"/>
 
                <TextView
+                   android:id="@+id/id_result_fragment_correct_result_text_view"
                    android:layout_width="0dp"
                    android:layout_weight="1"
                    android:layout_height="match_parent"
-                   android:gravity="center"
-                   android:text="10"/>
-
+                   style="@style/style_result_fragment_text" />
            </LinearLayout>
 
            <LinearLayout
                android:layout_height="0dp"
                android:layout_width="match_parent"
                android:layout_weight="1"
-               android:padding="5dp">
+               android:orientation="horizontal"
+               android:background="@color/color_light_green">
 
                <TextView
                    android:layout_width="0dp"
                    android:layout_weight="1"
                    android:layout_height="match_parent"
-                   android:gravity="center"
-                   android:text="Akurasi"/>
+                   style="@style/style_result_fragment_text"
+                   android:text="@string/string_result_fragment_accuracy_hint"/>
+
+               <ImageView
+                   android:layout_width="0dp"
+                   android:layout_weight="0.5"
+                   android:layout_height="match_parent"
+                   android:src="@drawable/drawable_accuracy"
+                   android:padding="5dp"
+                   android:layout_marginLeft="10dp"
+                   android:layout_marginRight="10dp"/>
 
                <TextView
+                   android:id="@+id/id_result_fragment_accuracy_result_text_view"
                    android:layout_width="0dp"
                    android:layout_weight="1"
                    android:layout_height="match_parent"
-                   android:gravity="center"
-                   android:text="10"/>
-
+                   style="@style/style_result_fragment_text"/>
            </LinearLayout>
 
            <LinearLayout
                android:layout_height="0dp"
                android:layout_width="match_parent"
                android:layout_weight="1"
-               android:padding="5dp">
+               android:background="@color/color_brown">
 
                <TextView
                    android:layout_width="0dp"
                    android:layout_weight="1"
                    android:layout_height="match_parent"
-                   android:gravity="center"
+                   style="@style/style_result_fragment_text"
                    android:text="Sisa Waktu"/>
 
+               <ImageView
+                   android:layout_width="0dp"
+                   android:layout_weight="0.5"
+                   android:layout_height="match_parent"
+                   android:src="@drawable/drawable_time_left"
+                   android:padding="5dp"
+                   android:layout_marginLeft="10dp"
+                   android:layout_marginRight="10dp"/>
+
                <TextView
+                   android:id="@+id/id_result_fragment_time_left_result_text_view"
                    android:layout_width="0dp"
                    android:layout_weight="1"
                    android:layout_height="match_parent"
-                   android:gravity="center"
-                   android:text="10"/>
-
+                   style="@style/style_result_fragment_text" />
            </LinearLayout>
-
        </LinearLayout>
 
        <LinearLayout
            android:layout_height="0dp"
            android:layout_width="match_parent"
-           android:layout_weight="1"
+           android:layout_weight=".5"
            android:orientation="horizontal">
 
            <LinearLayout
                android:layout_width="0dp"
                android:layout_height="match_parent"
                android:layout_weight="1"
-               android:padding="5dp"
-               android:orientation="vertical">
+               android:orientation="vertical"
+               android:background="@color/color_teal">
 
-                <TextView
+               <TextView
+                   android:id="@+id/id_result_fragment_total_score_result_text_view"
                    android:layout_width="match_parent"
                    android:layout_height="0dp"
-                   android:gravity="center"
                    android:layout_weight="1"
-                   android:text="Total Skor"/>
+                   style="@style/style_result_fragment_text"
+                   android:textSize="25sp"/>
 
                <TextView
                    android:layout_width="match_parent"
                    android:layout_height="0dp"
-                   android:layout_weight="1"
-                   android:gravity="center"
-                   android:text="180"/>
-
+                   style="@style/style_result_fragment_text"
+                   android:layout_weight=".4"
+                   android:text="@string/string_result_fragment_score_hint"/>
            </LinearLayout>
-
 
            <LinearLayout
                android:layout_width="0dp"
                android:layout_height="match_parent"
                android:layout_weight="1"
-               android:padding="5dp"
-               android:orientation="vertical">
+               android:orientation="vertical"
+               android:background="@color/color_cyan">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:layout_weight="1"
+                   android:orientation="horizontal"
+                   android:gravity="center">
+
+                   <ImageView
+                       android:layout_width="30dp"
+                       android:layout_height="match_parent"
+                       android:src="@drawable/drawable_coin"/>
+
+                   <TextView
+                       android:id="@+id/id_result_fragment_coin_result_text_view"
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       style="@style/style_result_fragment_text" />
+               </LinearLayout>
 
                <TextView
                    android:layout_width="match_parent"
                    android:layout_height="0dp"
-                   android:gravity="center"
-                   android:layout_weight="1"
-                   android:text="Koin Diperoleh"/>
-
-               <TextView
-                   android:layout_width="match_parent"
-                   android:layout_height="0dp"
-                   android:layout_weight="1"
-                   android:gravity="center"
-                   android:text="+5"/>
-
+                   style="@style/style_result_fragment_text"
+                   android:layout_weight=".4"
+                   android:text="@string/string_result_fragment_coin_hint"/>
            </LinearLayout>
-
        </LinearLayout>
-
-   </LinearLayout>
-
-
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/id_result_fragment_navigation_linear_layout"
@@ -166,16 +197,15 @@
         android:layout_alignParentBottom="true">
 
         <Button
+            android:id="@+id/id_result_fragment_high_score_button"
             style="@style/style_wrap_content"
-            android:text="Daftar Skor"
+            android:text="@string/string_result_fragment_high_score_hint"
             android:layout_marginRight="25dp"/>
 
         <Button
+            android:id="@+id/id_result_fragment_main_menu_button"
             style="@style/style_wrap_content"
             android:layout_marginLeft="25dp"
-            android:text="Tutup"/>
-
+            android:text="@string/string_result_fragment_main_menu_hint"/>
     </LinearLayout>
-
-
 </RelativeLayout>
