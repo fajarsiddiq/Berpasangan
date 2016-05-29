@@ -193,7 +193,6 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             // view.setBackgroundColor(parseColor(getColor(id)));
             if(image) {
                 int drawableId = Drawable.getDrawable(mFragment.getContext(), getImageName(id));
-                Log.i("test", getImageName(id));
                 ((ImageView) view.findViewById(id_tile_image_view)).setImageResource(drawableId);
 //                if (SDK_INT < JELLY_BEAN) //http://stackoverflow.com/questions/12523005/how-set-background-drawable-programmatically-in-android
 //                    view.setBackgroundDrawable(mFragment.getResources().getDrawable(drawableId));

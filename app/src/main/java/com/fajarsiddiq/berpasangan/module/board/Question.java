@@ -8,6 +8,7 @@ import com.fajarsiddiq.berpasangan.sqlite.Item;
 public class Question extends Item {
     private boolean image;
     private boolean answered;
+    private int color;
 
     public Question(String name) {
         super(name);
@@ -35,5 +36,13 @@ public class Question extends Item {
 
     public void setImage(boolean image) {
         this.image = image;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 }

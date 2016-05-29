@@ -47,7 +47,6 @@
 
     <style name="style_icon">
         <item name="android:scaleType">fitXY</item>
-        <item name="android:tint">@color/color_primary</item>
     </style>
 
     <style name="style_main_menu_image_view" parent="style_icon">

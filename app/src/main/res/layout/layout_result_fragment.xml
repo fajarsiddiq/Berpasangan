@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/style_match_parent">
+
+    <TextView
+        android:id="@+id/id_result_fragment_title_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="25sp"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        android:layout_alignParentTop="true"
+        android:text="Permainan Berakhir"/>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/id_result_fragment_title_text_view"
+       android:layout_above="@+id/id_result_fragment_navigation_linear_layout"
+       android:padding="10dp"
+       android:orientation="vertical">
+
+       <LinearLayout
+           android:layout_height="0dp"
+           android:layout_width="match_parent"
+           android:layout_weight="1"
+           android:orientation="vertical">
+
+           <LinearLayout
+               android:layout_height="0dp"
+               android:layout_width="match_parent"
+               android:layout_weight="1"
+               android:padding="5dp"
+               android:orientation="horizontal">
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:text="Jumlah Benar"/>
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:text="10"/>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_height="0dp"
+               android:layout_width="match_parent"
+               android:layout_weight="1"
+               android:padding="5dp">
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:text="Akurasi"/>
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:text="10"/>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_height="0dp"
+               android:layout_width="match_parent"
+               android:layout_weight="1"
+               android:padding="5dp">
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:text="Sisa Waktu"/>
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:text="10"/>
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:layout_height="0dp"
+           android:layout_width="match_parent"
+           android:layout_weight="1"
+           android:orientation="horizontal">
+
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:padding="5dp"
+               android:orientation="vertical">
+
+                <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:gravity="center"
+                   android:layout_weight="1"
+                   android:text="Total Skor"/>
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:layout_weight="1"
+                   android:gravity="center"
+                   android:text="180"/>
+
+           </LinearLayout>
+
+
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:padding="5dp"
+               android:orientation="vertical">
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:gravity="center"
+                   android:layout_weight="1"
+                   android:text="Koin Diperoleh"/>
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:layout_weight="1"
+                   android:gravity="center"
+                   android:text="+5"/>
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+   </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/id_result_fragment_navigation_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            style="@style/style_wrap_content"
+            android:text="Daftar Skor"
+            android:layout_marginRight="25dp"/>
+
+        <Button
+            style="@style/style_wrap_content"
+            android:layout_marginLeft="25dp"
+            android:text="Tutup"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

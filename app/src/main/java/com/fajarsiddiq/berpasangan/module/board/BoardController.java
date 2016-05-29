@@ -3,7 +3,6 @@ package com.fajarsiddiq.berpasangan.module.board;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.fajarsiddiq.berpasangan.helper.RunnableHelper;
 import com.fajarsiddiq.berpasangan.module.ModuleController;
 import com.fajarsiddiq.berpasangan.sqlite.Item;
 
@@ -12,10 +11,10 @@ import java.util.List;
 import static android.os.Message.obtain;
 import static com.fajarsiddiq.berpasangan.R.array.array_question;
 import static java.lang.String.valueOf;
-import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 import static java.util.Collections.shuffle;
 import static java.util.Arrays.asList;
+import static com.fajarsiddiq.berpasangan.helper.ColorPickerHelper.getColor;
 
 /**
  * Created by Muhammad Fajar on 28/03/2016.
@@ -113,6 +112,7 @@ public class BoardController extends ModuleController {
             Answer answer;
             for(int i = 0; i < noOfQuestion; i++) {
                 question = new Question(valueOf(i), questions[i].split("_")[0], questions[i].split("_")[1]);
+//                question.setColor(getColor(mContext));
                 answer = new Answer(questions[i].split("_")[1]);
                 items[i] = question;
                 items[i+noOfQuestion] = answer;
