@@ -10,6 +10,10 @@ import android.widget.TextView;
 import com.fajarsiddiq.berpasangan.module.ModuleFragment;
 
 import static android.view.View.OnClickListener;
+import static com.fajarsiddiq.berpasangan.R.string.string_result_fragment_accuracy_result;
+import static com.fajarsiddiq.berpasangan.R.string.string_result_fragment_time_left_result;
+import static java.lang.String.format;
+import static java.lang.String.valueOf;
 import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_accuracy_result_text_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_coin_result_text_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_correct_result_text_view;
@@ -18,6 +22,7 @@ import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_total_score_re
 import static com.fajarsiddiq.berpasangan.R.layout.layout_result_fragment;
 import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_high_score_button;
 import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_main_menu_button;
+import static com.fajarsiddiq.berpasangan.R.string.string_result_fragment_correct_result;
 
 /**
  * Created by Muhammad Fajar on 28/05/2016.
@@ -91,5 +96,11 @@ public class ResultFragment extends ModuleFragment implements OnClickListener {
 
     private void refreshData() {
         int [] data = getActivity().getIntent().getIntArrayExtra(ResultActivity.data);
+        final int attempt = data[0] / 2, answer = data[1], question = data[2], time = data[3], score = data[4];
+        final double accuracy = ((double) answer) / attempt;
+        mCorrectTextView.setText(format(getString(string_result_fragment_correct_result), answer, question));
+        mAccuracyTextView.setText(format(getString(string_result_fragment_accuracy_result), accuracy * 100));
+        mTimeLeftTextView.setText(format(getString(string_result_fragment_time_left_result), time));
+        mScoreTextView.setText(valueOf(score));
     }
 }

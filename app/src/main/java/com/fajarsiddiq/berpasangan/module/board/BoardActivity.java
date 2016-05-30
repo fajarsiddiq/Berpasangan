@@ -21,6 +21,8 @@ public class BoardActivity extends ModuleActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout_board_activity);
+        attemp = 0;
+        answered = 0;
         totalQuestion = (getIntent().getIntExtra(row, 0) * getIntent().getIntExtra(column, 0)) / 2;
     }
 

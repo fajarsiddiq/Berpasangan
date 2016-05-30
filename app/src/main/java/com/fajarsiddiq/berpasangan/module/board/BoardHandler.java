@@ -17,6 +17,7 @@ import com.fajarsiddiq.berpasangan.sqlite.Item;
 
 import static android.view.LayoutInflater.from;
 import static com.fajarsiddiq.berpasangan.R.drawable.drawable_tile;
+import static com.fajarsiddiq.berpasangan.R.drawable.fr;
 import static com.fajarsiddiq.berpasangan.R.id.id_tile_image_view;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_message;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_positive;
@@ -73,7 +74,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
                         .setPositiveButton(fragment.getString(string_board_fragment_timeout_positive), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                activity.startActivity(new Intent(activity, ResultActivity.class).putExtra(ResultActivity.data, new int[]{BoardActivity.attemp, BoardActivity.answered, BoardActivity.totalQuestion, parseInt(fragment.getTimerTextView().toString())}));
+                                activity.startActivity(new Intent(activity, ResultActivity.class).putExtra(ResultActivity.data, new int[]{BoardActivity.attemp, BoardActivity.answered, BoardActivity.totalQuestion, parseInt(fragment.getTimerTextView().getText().toString().split(" : ")[1]), parseInt(fragment.getScoreTextView().getText().toString())}));
                                 activity.finish();
                             }
                         }).setCancelable(false).create().show();
@@ -134,14 +135,13 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
 
     @Override
     public void onClick(View view) {
+        BoardActivity.attemp += 1;
         BoardFragment fragment = (BoardFragment) mFragment;
         if(first == null && second == null) {
-            BoardActivity.attemp =+ 1;
             refreshBoard(view.getId(), null);
             first = view;
             first.setOnClickListener(null);
         } else if(second == null) {
-            BoardActivity.attemp =+ 1;
             refreshBoard(first.getId(), view.getId());
             second = view;
             second.setOnClickListener(null);
@@ -154,7 +154,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             if (fragment.isSame(first.getId(), second.getId())) {
                 useSnackBar(fragment.getContext(), fragment.getActivity(), "Good! Plus 10.");
                 fragment.updateScore(10);
-                BoardActivity.answered =+ 1;
+                BoardActivity.answered += 1;
 //                refreshBoard(null, null);
             }
             first.setOnClickListener(this);
