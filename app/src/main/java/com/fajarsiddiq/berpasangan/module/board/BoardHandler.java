@@ -1,5 +1,6 @@
 package com.fajarsiddiq.berpasangan.module.board;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
@@ -98,9 +99,6 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             for(int i = 0; i < items.length; i++) {
                 view = from(fragment.getContext()).inflate(layout_tile, null);
                 view.setLayoutParams(layoutParams);
-//                view.setMinimumWidth(screenWidth / ((x > y) ? x : y));
-//                view.setMinimumHeight(screenWidth / ((x > y) ? x : y));
-                //view.setBackgroundColor(parseColor(items[ii].getValue())); //http://stackoverflow.com/questions/2173936/how-to-set-background-color-of-a-view
                 view.setId(i);
                 view.setOnClickListener(this);
                 gridLayout.addView(view);
@@ -124,10 +122,11 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
                     .setTitle(fragment.getString(string_board_fragment_finish_title));
             builder.setPositiveButton(fragment.getString(string_board_fragment_finish_positive), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    fragment.getActivity().finish();
+                    Activity activity = fragment.getActivity();
+                    activity.startActivity(new Intent(activity, ResultActivity.class).putExtra(ResultActivity.data, new int[]{BoardActivity.attemp, BoardActivity.answered, BoardActivity.totalQuestion, parseInt(fragment.getTimerTextView().getText().toString().split(" : ")[1]), parseInt(fragment.getScoreTextView().getText().toString())}));
+                    activity.finish();
                 }
-            });
-            builder.create().show();
+            }).setCancelable(false).create().show();
         } else if(message.what == mWhatScore) {
             fragment.getScoreTextView().setText(valueOf(message.obj));
         }
@@ -155,7 +154,6 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
                 useSnackBar(fragment.getContext(), fragment.getActivity(), "Good! Plus 10.");
                 fragment.updateScore(10);
                 BoardActivity.answered += 1;
-//                refreshBoard(null, null);
             }
             first.setOnClickListener(this);
             second.setOnClickListener(this);

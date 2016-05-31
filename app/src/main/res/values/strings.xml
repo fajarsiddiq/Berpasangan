@@ -21,7 +21,7 @@
     <string name="string_board_fragment_timeout_message">Waktu Anda telah habis. Permainan usai!</string>
     <string name="string_board_fragment_finish_title">Selamat!</string>
     <string name="string_board_fragment_finish_message">Anda berhasil menyelesaikan permainan.</string>
-    <string name="string_board_fragment_finish_positive">Ke Menu Awal</string>
+    <string name="string_board_fragment_finish_positive">Lihat Skor Akhir</string>
     <string name="string_board_fragment_timeout_positive">Lihat Skor Akhir</string>
     <string name="string_result_fragment_title">Hasil Akhir</string>
     <string name="string_result_fragment_correct_hint">Jumlah Benar</string>

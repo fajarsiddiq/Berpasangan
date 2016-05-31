@@ -101,6 +101,8 @@ public class ResultFragment extends ModuleFragment implements OnClickListener {
         mCorrectTextView.setText(format(getString(string_result_fragment_correct_result), answer, question));
         mAccuracyTextView.setText(format(getString(string_result_fragment_accuracy_result), accuracy * 100));
         mTimeLeftTextView.setText(format(getString(string_result_fragment_time_left_result), time));
-        mScoreTextView.setText(valueOf(score));
+        final int finalScore = score + ((int) accuracy) + (time * 10);
+        mScoreTextView.setText(valueOf(finalScore));
+        mCoinTextView.setText(new StringBuilder(" + ").append(valueOf(finalScore / 10)));
     }
 }
