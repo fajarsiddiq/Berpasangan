@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fajarsiddiq.berpasangan.module.ModuleFragment;
-import com.fajarsiddiq.berpasangan.sqlite.Item;
 
 import static com.fajarsiddiq.berpasangan.R.id.id_board_fragment_grid_layout;
 import static com.fajarsiddiq.berpasangan.R.id.id_board_fragment_pause_image_view;

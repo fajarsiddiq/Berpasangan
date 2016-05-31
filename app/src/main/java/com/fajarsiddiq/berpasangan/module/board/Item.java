@@ -1,7 +1,4 @@
-package com.fajarsiddiq.berpasangan.sqlite;
-
-import com.fajarsiddiq.berpasangan.module.board.Answer;
-import com.fajarsiddiq.berpasangan.module.board.Question;
+package com.fajarsiddiq.berpasangan.module.board;
 
 /**
  * Created by Muhammad Fajar on 03/04/2016.

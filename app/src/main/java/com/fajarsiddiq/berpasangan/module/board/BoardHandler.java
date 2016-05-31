@@ -14,11 +14,9 @@ import android.widget.LinearLayout;
 import com.fajarsiddiq.berpasangan.helper.Drawable;
 import com.fajarsiddiq.berpasangan.module.ModuleHandler;
 import com.fajarsiddiq.berpasangan.module.result.ResultActivity;
-import com.fajarsiddiq.berpasangan.sqlite.Item;
 
 import static android.view.LayoutInflater.from;
 import static com.fajarsiddiq.berpasangan.R.drawable.drawable_tile;
-import static com.fajarsiddiq.berpasangan.R.drawable.fr;
 import static com.fajarsiddiq.berpasangan.R.id.id_tile_image_view;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_message;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_positive;

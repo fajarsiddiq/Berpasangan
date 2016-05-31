@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.fajarsiddiq.berpasangan.module.ModuleController;
-import com.fajarsiddiq.berpasangan.sqlite.Item;
 
 import java.util.List;
 
@@ -14,7 +13,6 @@ import static java.lang.String.valueOf;
 import static java.lang.Thread.sleep;
 import static java.util.Collections.shuffle;
 import static java.util.Arrays.asList;
-import static com.fajarsiddiq.berpasangan.helper.ColorPickerHelper.getColor;
 
 /**
  * Created by Muhammad Fajar on 28/03/2016.
