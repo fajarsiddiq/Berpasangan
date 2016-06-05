@@ -4,8 +4,11 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 
+import com.fajarsiddiq.berpasangan.helper.SQLiteHelper;
 import com.fajarsiddiq.berpasangan.module.ModuleActivity;
+import com.orm.SugarContext;
 
+import static com.fajarsiddiq.berpasangan.R.id.id_main_activity_fragment;
 import static com.fajarsiddiq.berpasangan.R.layout.layout_main_activity;
 import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_exit_prompt;
 import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_exit_prompt_negative;
@@ -18,6 +21,8 @@ import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_exit_pro
 public class MainActivity extends ModuleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SugarContext.init(this);
+        SQLiteHelper.prepareDb("Fajar");
         super.onCreate(savedInstanceState);
         setContentView(layout_main_activity);
     }
@@ -39,5 +44,12 @@ public class MainActivity extends ModuleActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainFragment fragment = (MainFragment) getSupportFragmentManager().findFragmentById(id_main_activity_fragment);
+        fragment.refreshCoin();
     }
 }

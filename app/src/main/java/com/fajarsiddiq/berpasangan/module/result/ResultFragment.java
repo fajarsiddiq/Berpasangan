@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.fajarsiddiq.berpasangan.module.ModuleFragment;
+import com.fajarsiddiq.berpasangan.sqlite.User;
 
 import static android.view.View.OnClickListener;
 import static com.fajarsiddiq.berpasangan.R.string.string_result_fragment_accuracy_result;
@@ -103,6 +104,14 @@ public class ResultFragment extends ModuleFragment implements OnClickListener {
         mTimeLeftTextView.setText(format(getString(string_result_fragment_time_left_result), time));
         final int finalScore = score + ((int) accuracy) + (time * 10);
         mScoreTextView.setText(valueOf(finalScore));
-        mCoinTextView.setText(new StringBuilder(" + ").append(valueOf(finalScore / 10)));
+        mCoinTextView.setText(new StringBuilder(" + ").append(finalScore > 0 ? valueOf(finalScore / 10) : valueOf(0)));
+        if(finalScore > 0)
+            saveData(finalScore / 10);
+    }
+
+    private void saveData(int coin) {
+        User user = User.findById(User.class, 1);
+        user.setCoin(user.getCoin() + coin);
+        user.save();
     }
 }

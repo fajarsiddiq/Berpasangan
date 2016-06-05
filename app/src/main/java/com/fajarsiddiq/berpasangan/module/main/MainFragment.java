@@ -8,11 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.fajarsiddiq.berpasangan.module.ModuleFragment;
 import com.fajarsiddiq.berpasangan.module.board.BoardActivity;
+import com.fajarsiddiq.berpasangan.sqlite.User;
 import com.nispok.snackbar.Snackbar;
 
+import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_coin_text_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_exit_image_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_extra_image_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_help_image_view;
@@ -26,6 +29,7 @@ import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_exit_pro
 import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_select_level_title;
 import static com.fajarsiddiq.berpasangan.R.array.array_level_name;
 import static java.lang.Integer.parseInt;
+import static java.lang.String.valueOf;
 
 /**
  * Created by Muhammad Fajar on 17/03/2016.
@@ -36,6 +40,7 @@ public class MainFragment extends ModuleFragment implements View.OnClickListener
     private ImageView mStatisticImageView;
     private ImageView mSettingImageView;
     private ImageView mExitImageView;
+    private TextView mCoinTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +50,8 @@ public class MainFragment extends ModuleFragment implements View.OnClickListener
         mStatisticImageView = (ImageView) view.findViewById(id_main_fragment_statistic_image_view);
         mSettingImageView = (ImageView) view.findViewById(id_main_fragment_help_image_view);
         mExitImageView = (ImageView) view.findViewById(id_main_fragment_exit_image_view);
+        mCoinTextView = (TextView) view.findViewById(id_main_fragment_coin_text_view);
+        refreshCoin();
 
         mStartImageView.setOnClickListener(this);
         mExtraImageView.setOnClickListener(this);
@@ -101,6 +108,11 @@ public class MainFragment extends ModuleFragment implements View.OnClickListener
                 AlertDialog dialog = builder.create();
                 dialog.show();
         }
+    }
+
+    public void refreshCoin() {
+        User user = User.findById(User.class, 1);
+        mCoinTextView.setText(new StringBuilder(" x ").append(valueOf(user.getCoin())));
     }
 }
 
