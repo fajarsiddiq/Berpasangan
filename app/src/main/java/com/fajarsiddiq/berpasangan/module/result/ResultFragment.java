@@ -37,6 +37,7 @@ public class ResultFragment extends ModuleFragment implements OnClickListener {
     private TextView mTimeLeftTextView;
     private TextView mScoreTextView;
     private TextView mCoinTextView;
+    private User user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +50,9 @@ public class ResultFragment extends ModuleFragment implements OnClickListener {
         mCoinTextView = (TextView) view.findViewById(id_result_fragment_coin_result_text_view); 
         mCorrectTextView = (TextView) view.findViewById(id_result_fragment_correct_result_text_view);
         mScoreTextView = (TextView) view.findViewById(id_result_fragment_total_score_result_text_view);
-        mTimeLeftTextView = (TextView) view.findViewById(id_result_fragment_time_left_result_text_view); 
+        mTimeLeftTextView = (TextView) view.findViewById(id_result_fragment_time_left_result_text_view);
+        mController = new ResultController(this);
+        user = new User();
         refreshData();
         return view;
     }
@@ -99,19 +102,20 @@ public class ResultFragment extends ModuleFragment implements OnClickListener {
         int [] data = getActivity().getIntent().getIntArrayExtra(ResultActivity.data);
         final int attempt = data[0] / 2, answer = data[1], question = data[2], time = data[3], score = data[4];
         final double accuracy = ((double) answer) / attempt;
+        user.setTotalAccuracy(accuracy);
         mCorrectTextView.setText(format(getString(string_result_fragment_correct_result), answer, question));
         mAccuracyTextView.setText(format(getString(string_result_fragment_accuracy_result), accuracy * 100));
         mTimeLeftTextView.setText(format(getString(string_result_fragment_time_left_result), time));
         final int finalScore = score + ((int) accuracy) + (time * 10);
         mScoreTextView.setText(valueOf(finalScore));
+        user.setBestScore(finalScore);
         mCoinTextView.setText(new StringBuilder(" + ").append(finalScore > 0 ? valueOf(finalScore / 10) : valueOf(0)));
         if(finalScore > 0)
-            saveData(finalScore / 10);
+            user.setCoin(finalScore / 10);
+        saveData();
     }
 
-    private void saveData(int coin) {
-        User user = User.findById(User.class, 1);
-        user.setCoin(user.getCoin() + coin);
-        user.save();
+    private void saveData() {
+        mController.saveData(user);
     }
 }

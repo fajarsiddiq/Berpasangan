@@ -28,4 +28,5 @@ dependencies {
     compile 'com.android.support:gridlayout-v7:23.2.1'
     compile 'com.nispok:snackbar:2.11.+'
     compile 'com.github.satyan:sugar:1.5'
+    compile 'com.mikhaellopez:circularimageview:3.0.2'
 }

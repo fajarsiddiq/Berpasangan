@@ -14,6 +14,8 @@ public class User extends SugarRecord {
     long totalDuration;
     int totalGame;
     int bestScore;
+    int totalScore;
+    double totalAccuracy;
 
     public User() {}
 
@@ -67,5 +69,21 @@ public class User extends SugarRecord {
 
     public void setBestScore(int bestScore) {
         this.bestScore = bestScore;
+    }
+
+    public int getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(int totalScore) {
+        this.totalScore = totalScore;
+    }
+
+    public double getTotalAccuracy() {
+        return totalAccuracy;
+    }
+
+    public void setTotalAccuracy(double totalAccuracy) {
+        this.totalAccuracy = totalAccuracy;
     }
 }

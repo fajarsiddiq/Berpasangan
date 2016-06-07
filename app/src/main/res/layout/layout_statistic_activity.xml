@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fragment
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/id_statistic_activity_fragment"
+    android:name="com.fajarsiddiq.berpasangan.module.statistic.StatisticFragment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout="@layout/layout_statistic_fragment" />

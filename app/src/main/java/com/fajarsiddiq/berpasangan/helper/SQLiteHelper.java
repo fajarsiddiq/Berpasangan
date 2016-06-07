@@ -11,7 +11,10 @@ public class SQLiteHelper {
         if(user == null) {
             user = new User(name);
             user.setCoin(0);
+            user.setTotalDuration(0);
             user.save();
         }
     }
+
+
 }

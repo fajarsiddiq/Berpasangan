@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.fajarsiddiq.berpasangan.module.ModuleFragment;
 import com.fajarsiddiq.berpasangan.module.board.BoardActivity;
+import com.fajarsiddiq.berpasangan.module.statistic.StatisticActivity;
 import com.fajarsiddiq.berpasangan.sqlite.User;
 import com.nispok.snackbar.Snackbar;
 
@@ -89,6 +90,7 @@ public class MainFragment extends ModuleFragment implements View.OnClickListener
             case id_main_fragment_extra_image_view:
                 break;
             case id_main_fragment_statistic_image_view:
+                startActivity(new Intent(getActivity(), StatisticActivity.class));
                 break;
             case id_main_fragment_help_image_view:
                 break;
