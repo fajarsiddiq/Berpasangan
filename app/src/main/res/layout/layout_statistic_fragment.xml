@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     style="@style/style_match_parent">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/drawable_back"
+        android:layout_alignParentLeft="true"/>
+
     <LinearLayout
+        android:id="@+id/id_statistic_fragment_header_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@color/color_primary">
+        android:background="@color/color_primary_dark">
 
         <TextView
             android:layout_width="match_parent"
@@ -18,14 +23,14 @@
             android:gravity="center_horizontal"
             android:textSize="20sp"
             android:textColor="@color/color_white"
-            android:padding="10dp"
-            android:text="Fajar"/>
+            android:padding="5dp"
+            android:text="Statistik"/>
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:padding="5dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:src="@drawable/drawable_user" />
 
         <LinearLayout
@@ -120,8 +125,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_alignParentBottom="true">
+        android:padding="15dp"
+        android:layout_below="@+id/id_statistic_fragment_header_linear_layout">
 
+        <android.support.v4.view.ViewPager
+            style="@style/style_match_parent"/>
 
     </LinearLayout>
 

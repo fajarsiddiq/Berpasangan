@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.fajarsiddiq.berpasangan.module.ModuleActivity;
+import com.norbsoft.typefacehelper.TypefaceHelper;
 
 import static com.fajarsiddiq.berpasangan.R.layout.layout_result_activity;
 /**
@@ -16,6 +17,7 @@ public class ResultActivity extends ModuleActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout_result_activity);
+        TypefaceHelper.typeface(this);
     }
 
     @Override

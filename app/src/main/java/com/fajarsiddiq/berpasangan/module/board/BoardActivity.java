@@ -3,6 +3,7 @@ package com.fajarsiddiq.berpasangan.module.board;
 import android.os.Bundle;
 
 import com.fajarsiddiq.berpasangan.module.ModuleActivity;
+import com.norbsoft.typefacehelper.TypefaceHelper;
 
 import static com.fajarsiddiq.berpasangan.R.layout.layout_board_activity;
 import static com.fajarsiddiq.berpasangan.R.id.id_board_activity_fragment;
@@ -21,6 +22,7 @@ public class BoardActivity extends ModuleActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout_board_activity);
+        TypefaceHelper.typeface(this);
         attemp = 0;
         answered = 0;
         totalQuestion = (getIntent().getIntExtra(row, 0) * getIntent().getIntExtra(column, 0)) / 2;

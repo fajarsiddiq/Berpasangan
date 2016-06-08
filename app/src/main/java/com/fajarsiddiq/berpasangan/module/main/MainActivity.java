@@ -1,15 +1,21 @@
 package com.fajarsiddiq.berpasangan.module.main;
 
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
+import android.widget.TextView;
 
 import com.fajarsiddiq.berpasangan.helper.SQLiteHelper;
 import com.fajarsiddiq.berpasangan.module.ModuleActivity;
 import com.fajarsiddiq.berpasangan.sqlite.User;
+import com.norbsoft.typefacehelper.TypefaceCollection;
+import com.norbsoft.typefacehelper.TypefaceHelper;
 import com.orm.SugarContext;
 
 import static java.lang.System.currentTimeMillis;
+import static com.norbsoft.typefacehelper.TypefaceHelper.typeface;
 import static com.fajarsiddiq.berpasangan.R.id.id_main_activity_fragment;
 import static com.fajarsiddiq.berpasangan.R.layout.layout_main_activity;
 import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_exit_prompt;
@@ -30,6 +36,11 @@ public class MainActivity extends ModuleActivity {
         super.onCreate(savedInstanceState);
         setContentView(layout_main_activity);
         duration = currentTimeMillis();
+        TypefaceCollection typeface = new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/NordRegular.ttf"))
+                .create();
+        TypefaceHelper.init(typeface);
+        TypefaceHelper.typeface(this);
     }
 
     @Override
@@ -54,6 +65,7 @@ public class MainActivity extends ModuleActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+        typeface(dialog.findViewById(android.R.id.message));
     }
 
     @Override

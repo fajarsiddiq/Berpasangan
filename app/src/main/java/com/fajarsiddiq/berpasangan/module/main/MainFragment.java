@@ -29,6 +29,7 @@ import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_exit_pro
 import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_exit_prompt_negative;
 import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_select_level_title;
 import static com.fajarsiddiq.berpasangan.R.array.array_level_name;
+import static com.norbsoft.typefacehelper.TypefaceHelper.typeface;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.valueOf;
 
@@ -109,6 +110,7 @@ public class MainFragment extends ModuleFragment implements View.OnClickListener
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
+                typeface(dialog.findViewById(android.R.id.message));
         }
     }
 

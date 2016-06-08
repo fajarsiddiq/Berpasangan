@@ -29,4 +29,5 @@ dependencies {
     compile 'com.nispok:snackbar:2.11.+'
     compile 'com.github.satyan:sugar:1.5'
     compile 'com.mikhaellopez:circularimageview:3.0.2'
+    compile 'com.norbsoft.typefacehelper:library:0.9.0'
 }
