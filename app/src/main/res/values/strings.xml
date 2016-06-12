@@ -27,11 +27,23 @@
     <string name="string_result_fragment_correct_hint">Jumlah Benar</string>
     <string name="string_result_fragment_correct_result">%1$d dari %2$d</string>
     <string name="string_result_fragment_accuracy_hint">Akurasi</string>
-    <string name="string_result_fragment_accuracy_result">%.1f persen</string>
+    <string name="string_result_fragment_accuracy_result">%.1f%%</string>
     <string name="string_result_fragment_time_left_hint">Sisa Waktu</string>
     <string name="string_result_fragment_time_left_result">%1$d detik</string>
     <string name="string_result_fragment_score_hint">Total Skor</string>
     <string name="string_result_fragment_coin_hint">Koin Diperoleh</string>
     <string name="string_result_fragment_high_score_hint">Daftar Skor</string>
     <string name="string_result_fragment_main_menu_hint">Tutup</string>
+    <string name="string_stats_fragment_name">Statistik</string>
+    <string name="string_stats_fragment_average_score_hint">Skor Rata-Rata</string>
+    <string name="string_stats_fragment_average_score">%.1f</string>
+    <string name="string_stats_fragment_average_accuracy_hint">Akurasi Rata-Rata</string>
+    <string name="string_stats_fragment_average_accuracy">%.2f%%</string>
+    <string name="string_stats_fragment_encyclopedia_unlocked_hint">Entri Ensiklopedia Terbuka</string>
+    <string name="string_stats_fragment_encyclopedia_read_hint">Entri Ensiklopedia Dibaca</string>
+    <string name="string_stats_fragment_play_duration_hint">Durasi Bermain</string>
+    <string name="string_stats_fragment_play_duration">%1$d jam\n%2$d menit</string>
+    <string name="string_stats_fragment_play_duration_no_hour">%1$d menit</string>
+    <string name="string_stats_fragment_coin_spent_hint">Koin Digunakan</string>
+    <string name="string_achievement_fragment_name">Pencapaian</string>
 </resources>

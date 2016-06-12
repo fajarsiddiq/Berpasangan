@@ -17,6 +17,7 @@ import com.fajarsiddiq.berpasangan.module.result.ResultActivity;
 
 import static android.view.LayoutInflater.from;
 import static com.fajarsiddiq.berpasangan.R.drawable.drawable_tile;
+import static com.fajarsiddiq.berpasangan.R.drawable.fr;
 import static com.fajarsiddiq.berpasangan.R.id.id_tile_image_view;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_message;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_positive;
@@ -121,7 +122,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             builder.setPositiveButton(fragment.getString(string_board_fragment_finish_positive), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     Activity activity = fragment.getActivity();
-                    activity.startActivity(new Intent(activity, ResultActivity.class).putExtra(ResultActivity.data, new int[]{BoardActivity.attemp, BoardActivity.answered, BoardActivity.totalQuestion, parseInt(fragment.getTimerTextView().getText().toString().split(" : ")[1]), parseInt(fragment.getScoreTextView().getText().toString())}));
+                    activity.startActivity(new Intent(activity, ResultActivity.class).putExtra(ResultActivity.data, new int[]{BoardActivity.attemp, BoardActivity.answered, BoardActivity.totalQuestion, parseInt(fragment.getTimerTextView().getText().toString().split(" : ")[1]), parseInt(fragment.getScoreTextView().getText().toString()), BoardActivity.zonk}));
                     activity.finish();
                 }
             }).setCancelable(false).create().show();
@@ -134,6 +135,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
     public void onClick(View view) {
         BoardActivity.attemp += 1;
         BoardFragment fragment = (BoardFragment) mFragment;
+        BoardActivity activity = (BoardActivity) fragment.getActivity();
         if(first == null && second == null) {
             refreshBoard(view.getId(), null);
             first = view;
@@ -144,12 +146,13 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             second.setOnClickListener(null);
 
             if (fragment.isZonk(first.getId()) || fragment.isZonk(second.getId())) {
-                useSnackBar(fragment.getContext(), fragment.getActivity(), "It's zonk. Minus 5.");
+                useSnackBar(fragment.getContext(), activity, "It's zonk. Minus 5.");
                 fragment.updateScore(-5);
+                BoardActivity.zonk += 1;
             }
 
             if (fragment.isSame(first.getId(), second.getId())) {
-                useSnackBar(fragment.getContext(), fragment.getActivity(), "Good! Plus 10.");
+                useSnackBar(fragment.getContext(), activity, "Good! Plus 10.");
                 fragment.updateScore(10);
                 BoardActivity.answered += 1;
             }
@@ -166,39 +169,21 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
         return temp instanceof Question ? temp.getName() : temp.getValue();
     }
 
-    private String getValue(final int id) {
-        BoardFragment fragment = (BoardFragment) mFragment;
-        return fragment.getValue(id);
-    }
-
     private void refreshBoard(final Integer id1, final Integer id2) {
         BoardFragment fragment = (BoardFragment) mFragment;
         fragment.refreshBoard(id1, id2);
     }
 
     private void setBackground(final View view, final int id, final int status, final boolean image) {
-        if(status == 0) {
-            if(image) {
-                ((ImageView) view.findViewById(id_tile_image_view)).setImageResource(drawable_tile);
-//                if (SDK_INT < JELLY_BEAN) //http://stackoverflow.com/questions/12523005/how-set-background-drawable-programmatically-in-android
-//                    view.setBackgroundDrawable(mFragment.getResources().getDrawable(drawable_tile_background));
-//                else
-//                    view.setBackground(mFragment.getResources().getDrawable(drawable_tile_background));
-            }
-        } else if(status == 1) {
+        if(status == 0)
+            ((ImageView) view.findViewById(id_tile_image_view)).setImageResource(drawable_tile);
+        else if(status == 1) {
             ((ImageView) view.findViewById(id_tile_image_view)).setImageResource(drawable_check);
             view.setOnClickListener(null);
         } else if(status == 2) {
-            BoardFragment fragment = (BoardFragment) mFragment;
-            // previously when using color, show color of selected tiles
-            // view.setBackgroundColor(parseColor(getColor(id)));
             if(image) {
                 int drawableId = Drawable.getDrawable(mFragment.getContext(), getImageName(id));
                 ((ImageView) view.findViewById(id_tile_image_view)).setImageResource(drawableId);
-//                if (SDK_INT < JELLY_BEAN) //http://stackoverflow.com/questions/12523005/how-set-background-drawable-programmatically-in-android
-//                    view.setBackgroundDrawable(mFragment.getResources().getDrawable(drawableId));
-//                else
-//                    view.setBackground(mFragment.getResources().getDrawable(drawableId));
             }
         }
     }

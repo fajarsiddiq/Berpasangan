@@ -100,7 +100,7 @@ public class ResultFragment extends ModuleFragment implements OnClickListener {
 
     private void refreshData() {
         int [] data = getActivity().getIntent().getIntArrayExtra(ResultActivity.data);
-        final int attempt = data[0] / 2, answer = data[1], question = data[2], time = data[3], score = data[4];
+        final int attempt = data[0] / 2, answer = data[1], question = data[2], time = data[3], score = data[4], zonk = data[5];
         final double accuracy = ((double) answer) / attempt;
         user.setTotalAccuracy(accuracy);
         mCorrectTextView.setText(format(getString(string_result_fragment_correct_result), answer, question));
@@ -110,8 +110,11 @@ public class ResultFragment extends ModuleFragment implements OnClickListener {
         mScoreTextView.setText(valueOf(finalScore));
         user.setBestScore(finalScore);
         mCoinTextView.setText(new StringBuilder(" + ").append(finalScore > 0 ? valueOf(finalScore / 10) : valueOf(0)));
-        if(finalScore > 0)
+        if(finalScore > 0) {
             user.setCoin(finalScore / 10);
+            user.setTotalScore(finalScore);
+        }
+        user.setTotalZonk(zonk);
         saveData();
     }
 

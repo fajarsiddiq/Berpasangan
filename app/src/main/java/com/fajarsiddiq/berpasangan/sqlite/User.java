@@ -16,6 +16,10 @@ public class User extends SugarRecord {
     int bestScore;
     int totalScore;
     double totalAccuracy;
+    int totalZonk;
+    int totalEncyclopediaUnlocked;
+    int getTotalEncyclopediaRead;
+    int coinSpent;
 
     public User() {}
 
@@ -85,5 +89,37 @@ public class User extends SugarRecord {
 
     public void setTotalAccuracy(double totalAccuracy) {
         this.totalAccuracy = totalAccuracy;
+    }
+
+    public int getTotalZonk() {
+        return totalZonk;
+    }
+
+    public void setTotalZonk(int totalZonk) {
+        this.totalZonk = totalZonk;
+    }
+
+    public int getTotalEncyclopediaUnlocked() {
+        return totalEncyclopediaUnlocked;
+    }
+
+    public void setTotalEncyclopediaUnlocked(int totalEncyclopediaUnlocked) {
+        this.totalEncyclopediaUnlocked = totalEncyclopediaUnlocked;
+    }
+
+    public int getGetTotalEncyclopediaRead() {
+        return getTotalEncyclopediaRead;
+    }
+
+    public void setGetTotalEncyclopediaRead(int getTotalEncyclopediaRead) {
+        this.getTotalEncyclopediaRead = getTotalEncyclopediaRead;
+    }
+
+    public int getCoinSpent() {
+        return coinSpent;
+    }
+
+    public void setCoinSpent(int coinSpent) {
+        this.coinSpent = coinSpent;
     }
 }

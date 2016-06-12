@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/style_match_parent"
+    app:cardCornerRadius="15dp">
+
+    <android.support.percent.PercentRelativeLayout
+        style="@style/style_match_parent">
+
+        <LinearLayout
+            android:id="@+id/id_1"
+            style="@style/style_stats_fragment_grid"
+            app:layout_heightPercent="30%"
+            app:layout_widthPercent="50%">
+
+            <TextView
+                android:id="@+id/id_stats_fragment_average_score_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="40sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/string_stats_fragment_average_score_hint"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_2"
+            style="@style/style_stats_fragment_grid"
+            android:layout_toRightOf="@+id/id_1"
+            app:layout_heightPercent="30%"
+            app:layout_widthPercent="50%">
+
+            <TextView
+                android:id="@+id/id_stats_fragment_average_accuracy_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="40sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/string_stats_fragment_average_accuracy_hint"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_3"
+            style="@style/style_stats_fragment_grid"
+            android:layout_below="@+id/id_1"
+            app:layout_heightPercent="30%"
+            app:layout_widthPercent="50%">
+
+            <TextView
+                android:id="@+id/id_stats_fragment_encyclopedia_unlocked_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="40sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/string_stats_fragment_encyclopedia_unlocked_hint"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_4"
+            style="@style/style_stats_fragment_grid"
+            android:layout_toRightOf="@+id/id_3"
+            android:layout_below="@+id/id_2"
+            app:layout_heightPercent="30%"
+            app:layout_widthPercent="50%">
+
+            <TextView
+                android:id="@+id/id_stats_fragment_encyclopedia_read_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="40sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/string_stats_fragment_encyclopedia_read_hint"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_5"
+            style="@style/style_stats_fragment_grid"
+            android:layout_below="@+id/id_3"
+            app:layout_heightPercent="30%"
+            app:layout_widthPercent="50%">
+
+            <TextView
+                android:id="@+id/id_stats_fragment_play_duration_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/string_stats_fragment_play_duration_hint"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_6"
+            style="@style/style_stats_fragment_grid"
+            android:layout_toRightOf="@+id/id_5"
+            android:layout_below="@+id/id_4"
+            app:layout_heightPercent="30%"
+            app:layout_widthPercent="50%">
+
+            <TextView
+                android:id="@+id/id_stats_fragment_coin_spent_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="40sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/string_stats_fragment_coin_spent_hint"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_stats_fragment_title_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/color_cyan"
+            app:layout_heightPercent="10%"
+            app:layout_widthPercent="100%"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/id_statistic_fragment_section_title_text_view"
+                style="@style/style_match_parent"
+                android:padding="3dp"
+                android:gravity="center"
+                android:textColor="@color/color_white"
+                android:textSize="20sp"
+                android:text="@string/string_stats_fragment_name"/>
+
+        </LinearLayout>
+    </android.support.percent.PercentRelativeLayout>
+</android.support.v7.widget.CardView>

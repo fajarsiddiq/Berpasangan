@@ -1,5 +1,6 @@
 Font
-- Gasalt : http://www.1001fonts.com/gasalt-font.html
-- Avocado : https://images.template.net/wp-content/uploads/2015/03/weknow_green-avocado.zip
+- Nord : https://www.behance.net/gallery/Nord-FREE-FONT/16059767
+
+Library
 
 

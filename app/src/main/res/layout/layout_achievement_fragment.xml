@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/style_match_parent"
+    app:cardCornerRadius="20dp">
+
+    <RelativeLayout
+        style="@style/style_match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/color_accent"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/id_statistic_fragment_section_title_text_view"
+                style="@style/style_match_parent"
+                android:padding="3dp"
+                android:gravity="center"
+                android:text="@string/string_achievement_fragment_name"
+                android:textColor="@color/color_white"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

@@ -29,6 +29,7 @@ public class ResultController extends ModuleController {
             user.setCoin(user.getCoin() + temp.getCoin());
             user.setTotalScore(user.getTotalScore() + temp.getTotalScore());
             user.setTotalAccuracy(user.getTotalAccuracy() + temp.getTotalAccuracy());
+            user.setTotalZonk(user.getTotalZonk() + temp.getTotalZonk());
             user.save();
             return null;
         }

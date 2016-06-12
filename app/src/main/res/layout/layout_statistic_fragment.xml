@@ -18,6 +18,7 @@
         android:background="@color/color_primary_dark">
 
         <TextView
+            android:id="@+id/id_statistic_fragment_name_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -125,10 +126,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:padding="15dp"
+        android:background="@color/color_grey_2"
+        android:padding="10dp"
         android:layout_below="@+id/id_statistic_fragment_header_linear_layout">
 
         <android.support.v4.view.ViewPager
+            android:id="@+id/id_statistic_fragment_view_pager"
             style="@style/style_match_parent"/>
 
     </LinearLayout>

@@ -17,6 +17,7 @@ public class BoardActivity extends ModuleActivity {
     public static int totalQuestion;
     public static int attemp = 0;
     public static int answered = 0;
+    public static int zonk = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class BoardActivity extends ModuleActivity {
         attemp = 0;
         answered = 0;
         totalQuestion = (getIntent().getIntExtra(row, 0) * getIntent().getIntExtra(column, 0)) / 2;
+        zonk = 0;
     }
 
 }

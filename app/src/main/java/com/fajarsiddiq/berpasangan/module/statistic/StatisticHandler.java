@@ -26,6 +26,7 @@ public class StatisticHandler extends ModuleHandler {
             fragment.getBestScoreTextView().setText(valueOf(user.getBestScore()));
             fragment.getTotalCoinTextView().setText(valueOf(user.getCoin()));
             fragment.getTotalGameTextView().setText(valueOf(user.getTotalGame()));
+            fragment.getNameTextView().setText(user.getName());
         }
     }
 }

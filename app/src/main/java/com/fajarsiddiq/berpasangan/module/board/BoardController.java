@@ -185,10 +185,6 @@ public class BoardController extends ModuleController {
         return mBoard.getCell(id);
     }
 
-    public String getValue(final int id) {
-        return mBoard.getCell(id).getValue();
-    }
-
     public void getView() {
         BoardView[] views = new BoardView[mBoard.getLength()];
         for(int i = 0; i < views.length; i++) {
