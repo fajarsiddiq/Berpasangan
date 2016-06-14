@@ -35,8 +35,9 @@ public class BoardController extends ModuleController {
         mScore = 0;
     }
 
-    public void initTimer(final int duration) {
+    public void initTimer() {
         isRun = true;
+        final int duration = (x * y / 2) * 5;
         new Timer().execute(duration);
     }
 

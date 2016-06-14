@@ -41,11 +41,10 @@ public class BoardFragment extends ModuleFragment implements OnClickListener {
         mTimerTextView = (TextView) view.findViewById(id_board_fragment_timer_text_view);
         mScoreTextView = (TextView) view.findViewById(id_board_fragment_score_text_view);
         mController = new BoardController(this);
-        initTimer(30);
 
         Bundle bundle = getActivity().getIntent().getExtras();
         initQuestion(bundle.getInt(BoardActivity.row), bundle.getInt(BoardActivity.column));
-
+        initTimer();
 
         return view;
     }
@@ -66,8 +65,8 @@ public class BoardFragment extends ModuleFragment implements OnClickListener {
         return mGridLayout;
     }
 
-    private void initTimer(final int duration) {
-        mController.initTimer(duration);
+    private void initTimer() {
+        mController.initTimer();
     }
 
     private void initQuestion(final int x, final int y) {

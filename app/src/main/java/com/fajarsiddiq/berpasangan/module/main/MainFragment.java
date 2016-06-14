@@ -100,7 +100,8 @@ public class MainFragment extends ModuleFragment implements View.OnClickListener
                         .setTitle(getString(string_main_activity_exit_prompt_title));
                 builder.setPositiveButton(getString(string_main_activity_exit_prompt_positive), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        getActivity().finish();
+                        MainActivity activity = (MainActivity) getActivity();
+                        activity.saveDuration();
                     }
                 });
                 builder.setNegativeButton(getString(string_main_activity_exit_prompt_negative), new DialogInterface.OnClickListener() {

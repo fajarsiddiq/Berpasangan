@@ -2,10 +2,9 @@ package com.fajarsiddiq.berpasangan.module.main;
 
 import android.content.DialogInterface;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
-import android.widget.TextView;
 
 import com.fajarsiddiq.berpasangan.helper.SQLiteHelper;
 import com.fajarsiddiq.berpasangan.module.ModuleActivity;
@@ -50,12 +49,7 @@ public class MainActivity extends ModuleActivity {
                 .setTitle(getString(string_main_activity_exit_prompt_title));
         builder.setPositiveButton(getString(string_main_activity_exit_prompt_positive), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                User user = User.findById(User.class, 1);
-                duration = currentTimeMillis() - duration;
-                duration = duration + user.getTotalDuration();
-                user.setTotalDuration(duration);
-                user.save();
-                finish();
+                saveDuration();
             }
         });
         builder.setNegativeButton(getString(string_main_activity_exit_prompt_negative), new DialogInterface.OnClickListener() {
@@ -73,5 +67,32 @@ public class MainActivity extends ModuleActivity {
         super.onResume();
         MainFragment fragment = (MainFragment) getSupportFragmentManager().findFragmentById(id_main_activity_fragment);
         fragment.refreshCoin();
+    }
+
+    public void saveDuration() {
+        new Save().execute(duration);
+    }
+
+    private void afterAsync() {
+        finish();
+    }
+
+    private class Save extends AsyncTask<Long, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Long... params) {
+            long duration = params[0];
+            User user = User.findById(User.class, 1);
+            duration = currentTimeMillis() - duration;
+            duration = duration + user.getTotalDuration();
+            user.setTotalDuration(duration);
+            user.save();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            afterAsync();
+        }
     }
 }
