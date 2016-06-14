@@ -105,11 +105,15 @@ public class BoardFragment extends ModuleFragment implements OnClickListener {
         mPauseImageView.setOnClickListener(this);
     }
 
+    public void pauseTimer() {
+        mController.pauseTimer();
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case id_board_fragment_pause_image_view:
-                mController.pauseTimer();
+                pauseTimer();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage(getString(string_board_fragment_time_pause))
                         .setTitle(getString(string_board_fragment_time_pause_title));

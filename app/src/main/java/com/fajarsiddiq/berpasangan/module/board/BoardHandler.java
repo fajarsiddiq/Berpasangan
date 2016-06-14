@@ -117,6 +117,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             }
         } else if(message.what == mWhatFinish) {
             AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getActivity());
+            fragment.pauseTimer();
             builder.setMessage(fragment.getString(string_board_fragment_finish_message))
                     .setTitle(fragment.getString(string_board_fragment_finish_title));
             builder.setPositiveButton(fragment.getString(string_board_fragment_finish_positive), new DialogInterface.OnClickListener() {
