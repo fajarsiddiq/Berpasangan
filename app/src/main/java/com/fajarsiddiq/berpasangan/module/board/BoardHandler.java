@@ -17,7 +17,6 @@ import com.fajarsiddiq.berpasangan.module.result.ResultActivity;
 
 import static android.view.LayoutInflater.from;
 import static com.fajarsiddiq.berpasangan.R.drawable.drawable_tile;
-import static com.fajarsiddiq.berpasangan.R.drawable.fr;
 import static com.fajarsiddiq.berpasangan.R.id.id_tile_image_view;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_message;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_positive;
@@ -123,7 +122,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             builder.setPositiveButton(fragment.getString(string_board_fragment_finish_positive), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     Activity activity = fragment.getActivity();
-                    activity.startActivity(new Intent(activity, ResultActivity.class).putExtra(ResultActivity.data, new int[]{BoardActivity.attemp, BoardActivity.answered, BoardActivity.totalQuestion, parseInt(fragment.getTimerTextView().getText().toString().split(" : ")[1]), parseInt(fragment.getScoreTextView().getText().toString()), BoardActivity.zonk}));
+                    activity.startActivity(new Intent(activity, ResultActivity.class).putExtra(ResultActivity.data, new int[]{BoardActivity.attemp, BoardActivity.answered, BoardActivity.totalQuestion, parseInt(fragment.getTimerTextView().getText().toString().split(" : ")[1]), parseInt(fragment.getScoreTextView().getText().toString()), BoardActivity.zonk, BoardActivity.gameMode}));
                     activity.finish();
                 }
             }).setCancelable(false).create().show();

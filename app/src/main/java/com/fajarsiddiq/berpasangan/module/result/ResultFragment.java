@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.fajarsiddiq.berpasangan.module.ModuleFragment;
+import com.fajarsiddiq.berpasangan.sqlite.Highscore;
 import com.fajarsiddiq.berpasangan.sqlite.User;
 
 import static android.view.View.OnClickListener;
@@ -15,6 +16,7 @@ import static com.fajarsiddiq.berpasangan.R.string.string_result_fragment_accura
 import static com.fajarsiddiq.berpasangan.R.string.string_result_fragment_time_left_result;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
+import static java.lang.System.currentTimeMillis;
 import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_accuracy_result_text_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_coin_result_text_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_correct_result_text_view;
@@ -53,7 +55,8 @@ public class ResultFragment extends ModuleFragment implements OnClickListener {
         mTimeLeftTextView = (TextView) view.findViewById(id_result_fragment_time_left_result_text_view);
         mController = new ResultController(this);
         user = new User();
-        refreshData();
+        int [] data = getActivity().getIntent().getIntArrayExtra(ResultActivity.data);
+        refreshData(data);
         return view;
     }
 
@@ -98,9 +101,8 @@ public class ResultFragment extends ModuleFragment implements OnClickListener {
         }
     }
 
-    private void refreshData() {
-        int [] data = getActivity().getIntent().getIntArrayExtra(ResultActivity.data);
-        final int attempt = data[0] / 2, answer = data[1], question = data[2], time = data[3], score = data[4], zonk = data[5];
+    private void refreshData(final int[] data) {
+        final int attempt = data[0] / 2, answer = data[1], question = data[2], time = data[3], score = data[4], zonk = data[5], mode = data[6];
         final double accuracy = ((double) answer) / attempt;
         user.setTotalAccuracy(accuracy);
         mCorrectTextView.setText(format(getString(string_result_fragment_correct_result), answer, question));
@@ -115,10 +117,11 @@ public class ResultFragment extends ModuleFragment implements OnClickListener {
             user.setTotalScore(finalScore);
         }
         user.setTotalZonk(zonk);
-        saveData();
+        final Highscore highscore = new Highscore(currentTimeMillis(), "FJR", finalScore, valueOf(mode));
+        saveData(highscore);
     }
 
-    private void saveData() {
-        mController.saveData(user);
+    private void saveData(final Highscore highscore) {
+        mController.saveData(user, highscore);
     }
 }

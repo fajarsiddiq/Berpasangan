@@ -81,7 +81,7 @@ public class MainFragment extends ModuleFragment implements View.OnClickListener
                             if (ii == which) {
                                 int row = parseInt(levels[ii].split(" ")[0]);
                                 int column = parseInt(levels[ii].split(" ")[2]);
-                                startActivity(new Intent(getContext(), BoardActivity.class).putExtra(BoardActivity.row, row).putExtra(BoardActivity.column, column));
+                                startActivity(new Intent(getContext(), BoardActivity.class).putExtra(BoardActivity.row, row).putExtra(BoardActivity.column, column).putExtra(BoardActivity.mode, ii));
                             }
                         }
                     }

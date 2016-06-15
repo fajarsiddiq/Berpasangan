@@ -2,6 +2,7 @@ package com.fajarsiddiq.berpasangan.module.statistic.stats;
 
 import android.os.Message;
 import android.util.Log;
+import android.util.TypedValue;
 
 import com.fajarsiddiq.berpasangan.module.ModuleHandler;
 import com.fajarsiddiq.berpasangan.sqlite.User;
@@ -47,7 +48,12 @@ public class StatsHandler extends ModuleHandler {
                 hours = (int) minutes / 60;
                 minutes = minutes % 60;
             }
-            fragment.getPlayDurationTextView().setText(hours > 0 ? format(fragment.getString(string_stats_fragment_play_duration), hours, (int) minutes) : format(fragment.getString(string_stats_fragment_play_duration_no_hour), (int) minutes));
+            if(hours > 0) {
+                fragment.getPlayDurationTextView().setText(format(fragment.getString(string_stats_fragment_play_duration), hours, (int) minutes));
+            } else {
+                fragment.getPlayDurationTextView().setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
+                fragment.getPlayDurationTextView().setText(format(fragment.getString(string_stats_fragment_play_duration_no_hour), (int) minutes));
+            }
         }
     }
 }
