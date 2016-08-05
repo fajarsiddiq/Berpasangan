@@ -31,6 +31,11 @@
             android:theme="@style/AppTheme"/>
 
         <activity
+            android:name=".module.highscore.HighscoreActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
+
+        <activity
             android:name=".module.statistic.StatisticActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>

@@ -12,14 +12,17 @@ import android.widget.TextView;
 
 import com.fajarsiddiq.berpasangan.module.ModuleFragment;
 import com.fajarsiddiq.berpasangan.module.board.BoardActivity;
+import com.fajarsiddiq.berpasangan.module.highscore.HighscoreActivity;
 import com.fajarsiddiq.berpasangan.module.statistic.StatisticActivity;
 import com.fajarsiddiq.berpasangan.sqlite.User;
 import com.nispok.snackbar.Snackbar;
 
+import static com.fajarsiddiq.berpasangan.R.id.cancel_action;
 import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_coin_text_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_exit_image_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_extra_image_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_help_image_view;
+import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_highscore_image_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_start_image_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_statistic_image_view;
 import static com.fajarsiddiq.berpasangan.R.layout.layout_main_fragment;
@@ -40,6 +43,7 @@ public class MainFragment extends ModuleFragment implements View.OnClickListener
     private ImageView mStartImageView;
     private ImageView mExtraImageView;
     private ImageView mStatisticImageView;
+    private ImageView mHighscoreImageView;
     private ImageView mSettingImageView;
     private ImageView mExitImageView;
     private TextView mCoinTextView;
@@ -51,12 +55,14 @@ public class MainFragment extends ModuleFragment implements View.OnClickListener
         mExtraImageView = (ImageView) view.findViewById(id_main_fragment_extra_image_view);
         mStatisticImageView = (ImageView) view.findViewById(id_main_fragment_statistic_image_view);
         mSettingImageView = (ImageView) view.findViewById(id_main_fragment_help_image_view);
+        mHighscoreImageView = (ImageView) view.findViewById(id_main_fragment_highscore_image_view);
         mExitImageView = (ImageView) view.findViewById(id_main_fragment_exit_image_view);
         mCoinTextView = (TextView) view.findViewById(id_main_fragment_coin_text_view);
         refreshCoin();
 
         mStartImageView.setOnClickListener(this);
         mExtraImageView.setOnClickListener(this);
+        mHighscoreImageView.setOnClickListener(this);
         mStatisticImageView.setOnClickListener(this);
         mSettingImageView.setOnClickListener(this);
         mExitImageView.setOnClickListener(this);
@@ -89,6 +95,9 @@ public class MainFragment extends ModuleFragment implements View.OnClickListener
                 builder.create().show();
                 break;
             case id_main_fragment_extra_image_view:
+                break;
+            case id_main_fragment_highscore_image_view:
+                startActivity(new Intent(getActivity(), HighscoreActivity.class));
                 break;
             case id_main_fragment_statistic_image_view:
                 startActivity(new Intent(getActivity(), StatisticActivity.class));

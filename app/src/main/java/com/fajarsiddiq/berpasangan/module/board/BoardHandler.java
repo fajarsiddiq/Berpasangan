@@ -73,7 +73,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
                         .setPositiveButton(fragment.getString(string_board_fragment_timeout_positive), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                activity.startActivity(new Intent(activity, ResultActivity.class).putExtra(ResultActivity.data, new int[]{BoardActivity.attemp, BoardActivity.answered, BoardActivity.totalQuestion, parseInt(fragment.getTimerTextView().getText().toString().split(" : ")[1]), parseInt(fragment.getScoreTextView().getText().toString())}));
+                                activity.startActivity(new Intent(activity, ResultActivity.class).putExtra(ResultActivity.data, new int[]{BoardActivity.attemp, BoardActivity.answered, BoardActivity.totalQuestion, parseInt(fragment.getTimerTextView().getText().toString().split(" : ")[1]), parseInt(fragment.getScoreTextView().getText().toString()), BoardActivity.zonk, BoardActivity.gameMode}));
                                 activity.finish();
                             }
                         }).setCancelable(false).create().show();

@@ -1,5 +1,7 @@
 package com.fajarsiddiq.berpasangan.module.result;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.fajarsiddiq.berpasangan.module.ModuleFragment;
+import com.fajarsiddiq.berpasangan.module.highscore.HighscoreActivity;
 import com.fajarsiddiq.berpasangan.sqlite.Highscore;
 import com.fajarsiddiq.berpasangan.sqlite.User;
 
@@ -95,7 +98,9 @@ public class ResultFragment extends ModuleFragment implements OnClickListener {
     @Override
     public void onClick(final View view) {
         if(view.getId() == id_result_fragment_high_score_button) {
-            //Not implemented yet
+            Activity activity = getActivity();
+            activity.startActivity(new Intent(activity, HighscoreActivity.class));
+            activity.finish();
         } else if(view.getId() == id_result_fragment_main_menu_button) {
            getActivity().finish();
         }

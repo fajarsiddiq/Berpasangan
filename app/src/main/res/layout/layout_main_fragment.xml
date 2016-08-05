@@ -46,12 +46,19 @@
                 android:id="@+id/id_main_fragment_statistic_image_view"
                 style="@style/style_main_menu_image_view_1"
                 android:src="@drawable/drawable_statistics"
-                android:layout_marginRight="25dp"/>
+                android:layout_marginRight="15dp"/>
+
+            <ImageView
+                android:id="@+id/id_main_fragment_highscore_image_view"
+                style="@style/style_main_menu_image_view_1"
+                android:src="@drawable/drawable_highscore"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
 
             <ImageView
                 android:id="@+id/id_main_fragment_extra_image_view"
                 style="@style/style_main_menu_image_view_1"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="15dp"
                 android:src="@drawable/drawable_extras"/>
         </LinearLayout>
     </LinearLayout>

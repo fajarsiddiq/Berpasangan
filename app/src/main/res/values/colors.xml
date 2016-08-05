@@ -12,6 +12,11 @@
     <color name="color_grey_2">#E0E0E0</color>
     <color name="color_brown">#795548</color>
     <color name="color_light_green">#8BC34A</color>
+    <color name="color_blue_grey_1">#455A64</color>
+    <color name="color_blue_grey_2">#546E7A</color>
+    <color name="color_blue_grey_3">#607D8B</color>
+    <color name="color_blue_grey_4">#78909C</color>
+    <color name="color_blue_grey_5">#90A4AE</color>
     <color name="transparent">#00000000</color>
     <!-- card colors -->
     <color name="card_background">#ffffff</color>

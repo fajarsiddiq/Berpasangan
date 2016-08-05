@@ -23,10 +23,18 @@ public class HighscoreHelper {
                 highscores.remove(lastIndex);
                 highscores.add(newScore);
             }
-        } else highscores.add(newScore);
+        } else {
+            if(newScore.getScore() > 0)
+                highscores.add(newScore);
+        }
 
         sort(highscores, comparator);
         SugarRecord.saveInTx(highscores);
+        return highscores;
+    }
+
+    public static List<Highscore> sortHighscore(List<Highscore> highscores) {
+        sort(highscores, new HighscoreComparator());
         return highscores;
     }
 

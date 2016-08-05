@@ -2,8 +2,7 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/style_match_parent"
-    app:cardCornerRadius="15dp">
+    style="@style/style_match_parent">
 
     <android.support.percent.PercentRelativeLayout
         style="@style/style_match_parent">
@@ -144,14 +143,14 @@
         <LinearLayout
             android:id="@+id/id_stats_fragment_title_linear_layout"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="0dp"
             android:background="@color/color_cyan"
             app:layout_heightPercent="10%"
             app:layout_widthPercent="100%"
             android:layout_alignParentBottom="true">
 
             <TextView
-                android:id="@+id/id_statistic_fragment_section_title_text_view"
+                android:id="@+id/id_stats_fragment_section_title_text_view"
                 style="@style/style_match_parent"
                 android:padding="3dp"
                 android:gravity="center"
