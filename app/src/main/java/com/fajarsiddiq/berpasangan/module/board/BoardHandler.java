@@ -67,6 +67,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
         } else if(message.what == mWhatTimeout) {
             final BoardActivity activity = (BoardActivity) fragment.getActivity();
             if(activity != null) {
+                fragment.getBoardSound().playSound(fragment.getBoardSound().LOSE_SOUND);
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                 builder.setTitle(string_board_fragment_timeout_title)
                         .setMessage(string_board_fragment_timeout_message)
@@ -115,6 +116,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
                 setBackground(view, id, status, image);
             }
         } else if(message.what == mWhatFinish) {
+            fragment.getBoardSound().playSound(fragment.getBoardSound().WIN_SOUND);
             AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getActivity());
             fragment.pauseTimer();
             builder.setMessage(fragment.getString(string_board_fragment_finish_message))
@@ -136,6 +138,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
         BoardActivity.attemp += 1;
         BoardFragment fragment = (BoardFragment) mFragment;
         BoardActivity activity = (BoardActivity) fragment.getActivity();
+        fragment.getBoardSound().playSound(fragment.getBoardSound().TILE_SOUND);
         if(first == null && second == null) {
             refreshBoard(view.getId(), null);
             first = view;
@@ -152,8 +155,9 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             }
 
             if (fragment.isSame(first.getId(), second.getId())) {
-                useSnackBar(fragment.getContext(), activity, "Good! Plus 10.");
+                fragment.getBoardSound().playSound(fragment.getBoardSound().MATCH_SOUND);
                 fragment.updateScore(10);
+                useSnackBar(fragment.getContext(), activity, "Good! Plus 10.");
                 BoardActivity.answered += 1;
             }
             first.setOnClickListener(this);

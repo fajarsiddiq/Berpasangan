@@ -1,5 +1,6 @@
 package com.fajarsiddiq.berpasangan.module.board;
 
+import android.media.AudioManager;
 import android.os.Bundle;
 
 import com.fajarsiddiq.berpasangan.module.ModuleActivity;
@@ -26,6 +27,7 @@ public class BoardActivity extends ModuleActivity {
         super.onCreate(savedInstanceState);
         setContentView(layout_board_activity);
         TypefaceHelper.typeface(this);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         attemp = 0;
         answered = 0;
         totalQuestion = (getIntent().getIntExtra(row, 0) * getIntent().getIntExtra(column, 0)) / 2;

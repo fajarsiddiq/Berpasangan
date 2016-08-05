@@ -111,7 +111,6 @@ public class BoardController extends ModuleController {
             Answer answer;
             for(int i = 0; i < noOfQuestion; i++) {
                 question = new Question(valueOf(i), questions[i].split("_")[0], questions[i].split("_")[1]);
-//                question.setColor(getColor(mContext));
                 answer = new Answer(questions[i].split("_")[1]);
                 items[i] = question;
                 items[i+noOfQuestion] = answer;
