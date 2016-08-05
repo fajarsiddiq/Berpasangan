@@ -31,6 +31,7 @@ public class BoardFragment extends ModuleFragment implements OnClickListener {
     private ImageView mPauseImageView;
     private TextView mTimerTextView;
     private TextView mScoreTextView;
+    private BoardSound mBoardSound;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +46,8 @@ public class BoardFragment extends ModuleFragment implements OnClickListener {
         Bundle bundle = getActivity().getIntent().getExtras();
         initQuestion(bundle.getInt(BoardActivity.row), bundle.getInt(BoardActivity.column));
         initTimer();
+
+        mBoardSound = new BoardSound(getContext());
 
         return view;
     }
@@ -63,6 +66,10 @@ public class BoardFragment extends ModuleFragment implements OnClickListener {
 
     public GridLayout getGridLayout() {
         return mGridLayout;
+    }
+
+    public BoardSound getBoardSound() {
+        return mBoardSound;
     }
 
     private void initTimer() {
@@ -113,6 +120,7 @@ public class BoardFragment extends ModuleFragment implements OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case id_board_fragment_pause_image_view:
+                mBoardSound.playSound(mBoardSound.PAUSE_SOUND);
                 pauseTimer();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage(getString(string_board_fragment_time_pause))
