@@ -45,6 +45,7 @@
     <string name="string_stats_fragment_play_duration">%1$d jam\n%2$d menit</string>
     <string name="string_stats_fragment_play_duration_no_hour">%1$d menit</string>
     <string name="string_stats_fragment_coin_spent_hint">Koin Digunakan</string>
+    <string name="string_result_fragment_highscore_dialog">Selamat! Skor kamu masuk Daftar Skor Tertinggi.\n Silahkan pilih salah satu avatar di bawah :</string>
     <string name="string_highscore_fragment_name">5 Skor Tertinggi</string>
     <string name="string_highscore_fragment_no_data">Belum ada data skor tersimpan</string>
     <string name="string_achievement_fragment_name">Pencapaian</string>

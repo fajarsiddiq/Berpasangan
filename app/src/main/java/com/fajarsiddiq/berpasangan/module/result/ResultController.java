@@ -14,9 +14,11 @@ import static com.fajarsiddiq.berpasangan.helper.HighscoreHelper.process;
  * Created by Muhammad Fajar on 28/05/2016.
  */
 public class ResultController extends ModuleController {
+    private ResultHandler mHandler;
 
     ResultController(final ResultFragment fragment) {
         super(fragment.getContext());
+        mHandler = new ResultHandler(fragment);
     }
 
     public void saveData(User user, com.fajarsiddiq.berpasangan.sqlite.Highscore highscore) {
@@ -49,21 +51,20 @@ public class ResultController extends ModuleController {
         new Highscore().execute(highscore);
     }
 
-    private class Highscore extends AsyncTask<com.fajarsiddiq.berpasangan.sqlite.Highscore, Void, List<com.fajarsiddiq.berpasangan.sqlite.Highscore>> {
+    private class Highscore extends AsyncTask<com.fajarsiddiq.berpasangan.sqlite.Highscore, Void, Boolean> {
 
         @Override
-        protected List<com.fajarsiddiq.berpasangan.sqlite.Highscore> doInBackground(com.fajarsiddiq.berpasangan.sqlite.Highscore... params) {
+        protected Boolean doInBackground(com.fajarsiddiq.berpasangan.sqlite.Highscore... params) {
             com.fajarsiddiq.berpasangan.sqlite.Highscore highscore = params[0];
             List<com.fajarsiddiq.berpasangan.sqlite.Highscore> highscoreList = com.fajarsiddiq.berpasangan.sqlite.Highscore.listAll(com.fajarsiddiq.berpasangan.sqlite.Highscore.class);
-            List<com.fajarsiddiq.berpasangan.sqlite.Highscore> temp = process(highscore, highscoreList);
-            return temp;
+            final boolean isHighScore = process(highscore, highscoreList);
+            return isHighScore;
         }
 
         @Override
-        protected void onPostExecute(List<com.fajarsiddiq.berpasangan.sqlite.Highscore> highscores) {
-            for (com.fajarsiddiq.berpasangan.sqlite.Highscore highscore : highscores) {
-                Log.i("Test", "Skornya " + highscore.getScore() + ", modenya " + highscore.getMode());
-            }
+        protected void onPostExecute(Boolean isHighScore) {
+            if(isHighScore)
+                mHandler.sendEmptyMessage(mHandler.mWhatHighScore);
         }
     }
 }

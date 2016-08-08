@@ -1,12 +1,15 @@
 package com.fajarsiddiq.berpasangan.module.result;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fajarsiddiq.berpasangan.module.ModuleFragment;
@@ -15,6 +18,8 @@ import com.fajarsiddiq.berpasangan.sqlite.Highscore;
 import com.fajarsiddiq.berpasangan.sqlite.User;
 
 import static android.view.View.OnClickListener;
+import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_avatar_2;
+import static com.fajarsiddiq.berpasangan.R.layout.layout_highscore_avatar_pick_dialog;
 import static com.fajarsiddiq.berpasangan.R.string.string_result_fragment_accuracy_result;
 import static com.fajarsiddiq.berpasangan.R.string.string_result_fragment_time_left_result;
 import static java.lang.String.format;
@@ -29,6 +34,7 @@ import static com.fajarsiddiq.berpasangan.R.layout.layout_result_fragment;
 import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_high_score_button;
 import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_main_menu_button;
 import static com.fajarsiddiq.berpasangan.R.string.string_result_fragment_correct_result;
+import static com.fajarsiddiq.berpasangan.R.id.id_result_fragment_avatar_1;
 
 /**
  * Created by Muhammad Fajar on 28/05/2016.
@@ -103,6 +109,10 @@ public class ResultFragment extends ModuleFragment implements OnClickListener {
             activity.finish();
         } else if(view.getId() == id_result_fragment_main_menu_button) {
            getActivity().finish();
+        } else if(view.getId() == id_result_fragment_avatar_1) {
+            Log.i("Test", "Avatar pertama dipilih");
+        } else if(view.getId() == id_result_fragment_avatar_2) {
+            Log.i("Test", "Avatar kedua dipilih");
         }
     }
 
@@ -128,5 +138,16 @@ public class ResultFragment extends ModuleFragment implements OnClickListener {
 
     private void saveData(final Highscore highscore) {
         mController.saveData(user, highscore);
+    }
+
+    public void showAvatarDialog() {
+        Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(layout_highscore_avatar_pick_dialog);
+        dialog.setTitle("Selamat!");
+        ImageView avatar = (ImageView) dialog.findViewById(id_result_fragment_avatar_1);
+        avatar.setOnClickListener(this);
+        avatar = (ImageView) dialog.findViewById(id_result_fragment_avatar_2);
+        avatar.setOnClickListener(this);
+        dialog.show();
     }
 }

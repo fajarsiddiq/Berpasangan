@@ -12,7 +12,8 @@ import static java.util.Collections.sort;
  * Created by Muhammad Fajar on 14/06/2016.
  */
 public class HighscoreHelper {
-    public static List<Highscore> process(final Highscore newScore, List<Highscore> highscores) {
+    public static boolean process(final Highscore newScore, List<Highscore> highscores) {
+        boolean isHighScore = false;
         HighscoreComparator comparator = new HighscoreComparator();
         sort(highscores, comparator);
         final int lastIndex = highscores.size() - 1;
@@ -22,15 +23,18 @@ public class HighscoreHelper {
                 Highscore.delete(deleted);
                 highscores.remove(lastIndex);
                 highscores.add(newScore);
+                isHighScore = true;
             }
         } else {
-            if(newScore.getScore() > 0)
+            if(newScore.getScore() > 0) {
                 highscores.add(newScore);
+                isHighScore = true;
+            }
         }
 
         sort(highscores, comparator);
         SugarRecord.saveInTx(highscores);
-        return highscores;
+        return isHighScore;
     }
 
     public static List<Highscore> sortHighscore(List<Highscore> highscores) {
