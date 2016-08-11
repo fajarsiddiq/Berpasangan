@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/id_store_fragment_linear_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    style="@style/style_match_parent">
+
+    <LinearLayout
+        style="@style/style_match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/id_store_fragment_encyclopedia_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@color/color_blue_grey_5">
+
+            <ImageView
+                style="@style/style_icon_2"
+                android:src="@drawable/drawable_encyclopedia_entry" />
+
+            <TextView
+                style="@style/style_wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/string_store_fragment_encyclopedia_tile"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_store_fragment_card_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@color/color_blue_grey_4">
+
+            <ImageView
+                style="@style/style_icon_2"
+                android:src="@drawable/drawable_cards"/>
+
+            <TextView
+                style="@style/style_wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/string_store_fragment_card_tile"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_store_fragment_board_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@color/color_blue_grey_3">
+
+            <ImageView
+                style="@style/style_icon_2"
+                android:src="@drawable/drawable_board"/>
+
+            <TextView
+                style="@style/style_wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/string_store_fragment_board_tile"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

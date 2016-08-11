@@ -13,6 +13,9 @@
     <string name="string_main_activity_exit_prompt_negative">Tidak</string>
     <string name="string_main_activity_select_level_message">Silahkan pilih ukuran tile untuk memulai permainan :</string>
     <string name="string_main_activity_select_level_title">Pilih Ukuran Tile</string>
+    <string name="string_extra_dialog_description">Silahkan pilih bagian yang ingin kamu lihat :</string>
+    <string name="string_extra_dialog_subtitle_1">Ensiklopedia</string>
+    <string name="string_extra_dialog_subtitle_2">Toko</string>
     <string name="string_board_fragment_time_remaining">Sisa waktu :</string>
     <string name="string_board_fragment_time_pause_title">Berpasangan</string>
     <string name="string_board_fragment_time_pause">Permainan dihentikan sementara.</string>
@@ -45,6 +48,9 @@
     <string name="string_stats_fragment_play_duration">%1$d jam\n%2$d menit</string>
     <string name="string_stats_fragment_play_duration_no_hour">%1$d menit</string>
     <string name="string_stats_fragment_coin_spent_hint">Koin Digunakan</string>
+    <string name="string_store_fragment_encyclopedia_tile">ENTRI ENSIKLOPEDIA</string>
+    <string name="string_store_fragment_card_tile">LATAR TILE</string>
+    <string name="string_store_fragment_board_tile">LATAR PAPAN</string>
     <string name="string_result_fragment_highscore_dialog">Selamat! Skor kamu masuk Daftar Skor Tertinggi.\n Silahkan pilih salah satu avatar di bawah :</string>
     <string name="string_highscore_fragment_name">5 Skor Tertinggi</string>
     <string name="string_highscore_fragment_no_data">Belum ada data skor tersimpan</string>

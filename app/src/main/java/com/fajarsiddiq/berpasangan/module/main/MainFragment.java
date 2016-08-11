@@ -1,9 +1,11 @@
 package com.fajarsiddiq.berpasangan.module.main;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +14,17 @@ import android.widget.TextView;
 
 import com.fajarsiddiq.berpasangan.module.ModuleFragment;
 import com.fajarsiddiq.berpasangan.module.board.BoardActivity;
+import com.fajarsiddiq.berpasangan.module.extra.store.StoreActivity;
 import com.fajarsiddiq.berpasangan.module.highscore.HighscoreActivity;
 import com.fajarsiddiq.berpasangan.module.statistic.StatisticActivity;
 import com.fajarsiddiq.berpasangan.sqlite.User;
 import com.nispok.snackbar.Snackbar;
 
-import static com.fajarsiddiq.berpasangan.R.id.cancel_action;
+import static com.fajarsiddiq.berpasangan.R.id.id_extra_dialog_image_view_1;
+import static com.fajarsiddiq.berpasangan.R.id.id_extra_dialog_image_view_2;
+import static com.fajarsiddiq.berpasangan.R.id.id_extra_dialog_text_view;
+import static com.fajarsiddiq.berpasangan.R.id.id_extra_dialog_text_view_1;
+import static com.fajarsiddiq.berpasangan.R.id.id_extra_dialog_text_view_2;
 import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_coin_text_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_exit_image_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_extra_image_view;
@@ -26,6 +33,7 @@ import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_highscore_image_
 import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_start_image_view;
 import static com.fajarsiddiq.berpasangan.R.id.id_main_fragment_statistic_image_view;
 import static com.fajarsiddiq.berpasangan.R.layout.layout_main_fragment;
+import static com.fajarsiddiq.berpasangan.R.layout.layout_main_fragment_extra_dialog;
 import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_exit_prompt;
 import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_exit_prompt_title;
 import static com.fajarsiddiq.berpasangan.R.string.string_main_activity_exit_prompt_positive;
@@ -35,6 +43,7 @@ import static com.fajarsiddiq.berpasangan.R.array.array_level_name;
 import static com.norbsoft.typefacehelper.TypefaceHelper.typeface;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.valueOf;
+import static com.fajarsiddiq.berpasangan.helper.DialogHelper.buildDialog;
 
 /**
  * Created by Muhammad Fajar on 17/03/2016.
@@ -47,6 +56,7 @@ public class MainFragment extends ModuleFragment implements View.OnClickListener
     private ImageView mSettingImageView;
     private ImageView mExitImageView;
     private TextView mCoinTextView;
+    private Dialog mDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -95,6 +105,7 @@ public class MainFragment extends ModuleFragment implements View.OnClickListener
                 builder.create().show();
                 break;
             case id_main_fragment_extra_image_view:
+                showDialogExtra();
                 break;
             case id_main_fragment_highscore_image_view:
                 startActivity(new Intent(getActivity(), HighscoreActivity.class));
@@ -121,12 +132,28 @@ public class MainFragment extends ModuleFragment implements View.OnClickListener
                 AlertDialog dialog = builder.create();
                 dialog.show();
                 typeface(dialog.findViewById(android.R.id.message));
+                break;
+            case id_extra_dialog_image_view_1:
+                Log.i("Test", "Halo ensiklopedia");
+                break;
+            case id_extra_dialog_image_view_2:
+                startActivity(new Intent(getActivity(), StoreActivity.class));
         }
     }
 
     public void refreshCoin() {
         User user = User.findById(User.class, 1);
         mCoinTextView.setText(new StringBuilder(" x ").append(valueOf(user.getCoin())));
+    }
+
+    private void showDialogExtra() {
+        Dialog mDialog = buildDialog(getActivity(), layout_main_fragment_extra_dialog);
+        mDialog.findViewById(id_extra_dialog_image_view_1).setOnClickListener(this);
+        mDialog.findViewById(id_extra_dialog_image_view_2).setOnClickListener(this);
+        typeface(mDialog.findViewById(id_extra_dialog_text_view));
+        typeface(mDialog.findViewById(id_extra_dialog_text_view_1));
+        typeface(mDialog.findViewById(id_extra_dialog_text_view_2));
+        mDialog.show();
     }
 }
 

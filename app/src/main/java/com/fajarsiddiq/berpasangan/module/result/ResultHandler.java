@@ -19,7 +19,7 @@ public class ResultHandler extends ModuleHandler {
     public void handleMessage(Message message) {
         super.handleMessage(message);
         if(message.what == mWhatHighScore) {
-            ((ResultFragment) mFragment).showAvatarDialog();
+//            ((ResultFragment) mFragment).showAvatarDialog();
         }
     }
 }
