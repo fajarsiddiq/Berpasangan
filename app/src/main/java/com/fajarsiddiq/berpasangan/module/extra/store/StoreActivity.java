@@ -23,9 +23,9 @@ import static java.lang.String.valueOf;
 
 public class StoreActivity extends ModuleActivity {
     final static String STORE_TAG = "Store";
-    final static String ENCYCLOPEDIA_TAG = "Encyclopedia";
-    final static String CARD_TAG = "Card";
-    final static String BOARD_TAG = "Board";
+    public final static String ENCYCLOPEDIA_TAG = "Encyclopedia";
+    public final static String CARD_TAG = "Card";
+    public final static String BOARD_TAG = "Board";
     int mCoin;
 
     @Override

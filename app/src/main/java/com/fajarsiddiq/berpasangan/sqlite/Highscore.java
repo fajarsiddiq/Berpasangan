@@ -1,12 +1,11 @@
 package com.fajarsiddiq.berpasangan.sqlite;
 
-import com.orm.SugarRecord;
 import com.orm.dsl.Unique;
 
 /**
  * Created by Muhammad Fajar on 31/05/2016.
  */
-public class Highscore extends SugarRecord {
+public class Highscore extends Entity {
     @Unique
     long timeStamp;
     String alias;

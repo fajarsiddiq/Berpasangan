@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 
+import com.facebook.stetho.Stetho;
 import com.fajarsiddiq.berpasangan.helper.SQLiteHelper;
 import com.fajarsiddiq.berpasangan.module.ModuleActivity;
 import com.fajarsiddiq.berpasangan.sqlite.User;
@@ -31,7 +32,7 @@ public class MainActivity extends ModuleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SugarContext.init(this);
-        SQLiteHelper.prepareDb("Fajar");
+        SQLiteHelper.prepareDb("Fajar", getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(layout_main_activity);
         duration = currentTimeMillis();
@@ -40,6 +41,7 @@ public class MainActivity extends ModuleActivity {
                 .create();
         TypefaceHelper.init(typeface);
         TypefaceHelper.typeface(this);
+        Stetho.initializeWithDefaults(getApplicationContext());
     }
 
     @Override

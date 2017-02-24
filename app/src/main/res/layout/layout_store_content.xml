@@ -2,13 +2,14 @@
 <LinearLayout
     android:id="@+id/id_store_content_linear_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    style="@style/style_match_parent">
+    style="@style/style_match_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/color_primary_dark"
-        android:text="Halo"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/id_store_content_recycler_view"
+        style="@style/style_match_parent">
+
+
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

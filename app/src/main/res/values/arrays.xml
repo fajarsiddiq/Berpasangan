@@ -62,4 +62,46 @@
         <item>moai_pf</item>
     </string-array>
 
+    <string-array name="array_store_content_monument">
+        <item>parthenon_Parthenon</item>
+        <item>torii_Gerbang Torii</item>
+        <item>atomium_Monumen Atomium</item>
+        <item>bluemosque_Masjid Biru</item>
+        <item>burjkhalifa_Gedung Burj Al-Khalifa</item>
+        <item>bigben_Menara Big Ben</item>
+        <item>kaaba_Kabah</item>
+        <item>liberty_Patung Liberty</item>
+        <item>lincoln_Monumen Abraham Lincoln</item>
+        <item>eiffel_Menara Eiffel</item>
+        <item>coliseum_Koloseum</item>
+        <item>pisa_Menara Pisa</item>
+        <item>hollywood_Hollywood</item>
+        <item>londoneye_Wahana London Eye</item>
+        <item>monas_Monumen Nasional</item>
+        <item>mpr_Gedung MPR</item>
+        <item>nationaltower_Menara Nasional Kanada</item>
+        <item>obelisk_Menara Obelisk</item>
+        <item>sphinx_Sphinx</item>
+        <item>angkorwat_Angkor Wat</item>
+        <item>stonehenge_Stonehege</item>
+        <item>twintowers_Menara Kembar Petronas</item>
+        <item>windmill_Kincir Udara</item>
+        <item>saintbasil_Saint Basil</item>
+        <item>operahouse_Rumah Opera Sydney</item>
+        <item>rushmore_Gunung Rushmore</item>
+        <item>pyramid_Piramida</item>
+        <item>tajmahal_Taj Mahal</item>
+        <item>merlion_Patung Merlion</item>
+        <item>greatwall_Tembok Besar China</item>
+        <item>greatbuddha_Patung Buddha</item>
+        <item>empirestate_Gedung Empire State</item>
+        <item>christ_Patung Christ</item>
+        <item>spaceneedle_Gedung Space Needle</item>
+        <item>louvrepyramid_Piramida Louvre</item>
+        <item>machupicchu_Machu Picchu</item>
+        <item>mayapyramid_Piramida Maya</item>
+        <item>borobudur_Candi Borobudur</item>
+        <item>moai_Patung Moai</item>
+    </string-array>
+
 </resources>
