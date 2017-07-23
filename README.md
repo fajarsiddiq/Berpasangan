@@ -4,11 +4,11 @@ All you have to do is matching the monument with its corresponding flag of origi
 
 Sounds interesting? Here's the screenshots :
 
-![main-menu](https://i.imgur.com/6u8uOf3m.png) ![tile-size](https://i.imgur.com/LVwwrbIm.png) ![main-gameplay](https://i.imgur.com/4Uu56uUm.png)
-![timeout](https://i.imgur.com/EQaNtmLm.png) ![result](https://i.imgur.com/pZOHgpsm.png) ![highscores](https://i.imgur.com/Ipk8ep0m.png)
-![stats](https://i.imgur.com/iCw8rHrm.png) ![extra](https://i.imgur.com/WYHjiX8m.png)
+![main-menu](https://i.imgur.com/YBlIB5Lm.png) ![tile-size](https://i.imgur.com/fTIeOFkm.png) ![main-gameplay](https://i.imgur.com/4Uu56uUm.png)
+![timeout](https://i.imgur.com/EQaNtmLm.png) ![result](https://i.imgur.com/pZOHgpsm.png) ![leaderboard](https://i.imgur.com/lluS8rVm.png)
+![stats](https://i.imgur.com/Jfp31vLm.png) ![achievement](https://i.imgur.com/tQo0LIhm.png)
 
-It's currently in development stage, so the UI can be changed significantly (so please bear with bad color combination in this current stage :))! Even though several elements aren't implemented yet (like store or encyclopedia), the basic gameplay can be played right away.
+It's currently in development stage, so the UI can be changed significantly (so please bear with bad color combination in this current stage :))! Even though several elements aren't implemented yet (like store or encyclopedia), the basic gameplay can be played right away. Please note that this game utilises Google Play Games services for features like leaderboard and achievement, so make sure you have latest Google Play Games installed and already signed in into it.
 
 You can get the latest APK in here : [Google Drive](https://goo.gl/kfqfNC)
 
