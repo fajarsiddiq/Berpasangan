@@ -2,7 +2,7 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/style_match_parent">
+    style="@style/style_wrap_content">
 
     <android.support.percent.PercentRelativeLayout
         style="@style/style_match_parent">
@@ -75,8 +75,8 @@
         <LinearLayout
             android:id="@+id/id_4"
             style="@style/style_stats_fragment_grid"
-            android:layout_toRightOf="@+id/id_3"
             android:layout_below="@+id/id_2"
+            android:layout_toRightOf="@+id/id_3"
             app:layout_heightPercent="30%"
             app:layout_widthPercent="50%">
 
@@ -106,8 +106,8 @@
                 android:id="@+id/id_stats_fragment_play_duration_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:gravity="center_horizontal"/>
+                android:gravity="center_horizontal"
+                android:textSize="25sp"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -120,8 +120,8 @@
         <LinearLayout
             android:id="@+id/id_6"
             style="@style/style_stats_fragment_grid"
-            android:layout_toRightOf="@+id/id_5"
             android:layout_below="@+id/id_4"
+            android:layout_toRightOf="@+id/id_5"
             app:layout_heightPercent="30%"
             app:layout_widthPercent="50%">
 
@@ -144,19 +144,19 @@
             android:id="@+id/id_stats_fragment_title_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
             android:background="@color/color_cyan"
             app:layout_heightPercent="10%"
-            app:layout_widthPercent="100%"
-            android:layout_alignParentBottom="true">
+            app:layout_widthPercent="100%">
 
             <TextView
                 android:id="@+id/id_stats_fragment_section_title_text_view"
                 style="@style/style_match_parent"
-                android:padding="3dp"
                 android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/string_stats_fragment_name"
                 android:textColor="@color/color_white"
-                android:textSize="20sp"
-                android:text="@string/string_stats_fragment_name"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
     </android.support.percent.PercentRelativeLayout>

@@ -7,9 +7,9 @@ import com.fajarsiddiq.berpasangan.sqlite.Highscore;
 
 import java.util.List;
 
-import static com.fajarsiddiq.berpasangan.sqlite.Highscore.listAll;
 import static android.os.Message.obtain;
 import static com.fajarsiddiq.berpasangan.helper.HighscoreHelper.sortHighscore;
+import static com.fajarsiddiq.berpasangan.sqlite.Highscore.listAll;
 
 /**
  * Created by Muhammad Fajar on 16/06/2016.
@@ -17,9 +17,9 @@ import static com.fajarsiddiq.berpasangan.helper.HighscoreHelper.sortHighscore;
 public class HighscoreController extends ModuleController {
     private HighscoreHandler mHandler;
 
-    HighscoreController(final HighscoreFragment fragment) {
-        super(fragment.getContext());
-        mHandler = new HighscoreHandler(fragment);
+    HighscoreController(final HighscoreActivity activity) {
+        super(activity);
+        mHandler = new HighscoreHandler(activity);
         new LoadData().execute();
     }
 

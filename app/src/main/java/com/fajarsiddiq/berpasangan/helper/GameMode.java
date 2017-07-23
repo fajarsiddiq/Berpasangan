@@ -8,14 +8,24 @@ import static com.fajarsiddiq.berpasangan.R.array.array_level_name;
  */
 public enum GameMode {
     MODE_4x4(0),
-    MODE_4x5(1),
-    MODE_5x5(2),
-    MODE_6x5(3);
+    MODE_5x5(1),
+    MODE_6x5(2);
 
     private int mMode;
 
     GameMode(final int mode) {
         this.mMode = mode;
+    }
+
+    public static GameMode fromValue(final int mode) {
+        if(mode == MODE_4x4.mMode)
+            return MODE_4x4;
+        else if(mode == MODE_5x5.mMode)
+            return MODE_5x5;
+        else if(mode == MODE_6x5.mMode)
+            return MODE_6x5;
+        else
+            return null;
     }
 
     public int getMode() {
@@ -24,19 +34,6 @@ public enum GameMode {
 
     public String getName(final Context context) {
         return new StringBuilder("MODE ").append(context.getResources().getStringArray(array_level_name)[mMode]).toString();
-    }
-
-    public static GameMode fromValue(final int mode) {
-        if(mode == MODE_4x4.mMode)
-            return MODE_4x4;
-        else if(mode == MODE_4x5.mMode)
-            return MODE_4x5;
-        else if(mode == MODE_5x5.mMode)
-            return MODE_5x5;
-        else if(mode == MODE_6x5.mMode)
-            return MODE_6x5;
-        else
-            return null;
     }
 
 }

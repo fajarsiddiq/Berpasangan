@@ -2,6 +2,7 @@ package com.fajarsiddiq.berpasangan.module.board;
 
 import android.content.Context;
 
+import com.fajarsiddiq.berpasangan.helper.SharedPreferenceHelper;
 import com.fajarsiddiq.berpasangan.helper.SoundHelper;
 
 import static com.fajarsiddiq.berpasangan.R.raw.sound_game_lose;
@@ -20,22 +21,31 @@ public class BoardSound extends SoundHelper {
     final int PAUSE_SOUND = 3;
     final int LOSE_SOUND = 4;
     final int WIN_SOUND = 5;
-
+    private boolean isSoundOn;
 
     public BoardSound(final Context context) {
         super(context, 6); //add one for background music
-        init();
+        init(context);
     }
 
     public void playSound(final int index) {
-        super.playSong(index);
+        if (isSoundOn) {
+            super.playSong(index);
+        }
     }
 
-    private void init() {
-        addSound(TILE_SOUND, sound_open_tile);
-        addSound(PAUSE_SOUND, sound_pause_menu);
-        addSound(MATCH_SOUND, sound_tile_matched);
-        addSound(LOSE_SOUND, sound_game_lose);
-        addSound(WIN_SOUND, sound_game_win);
+    public void release() {
+        super.release();
+    }
+
+    private void init(Context context) {
+        isSoundOn = SharedPreferenceHelper.isMusicSwitchOn(context);
+        if (isSoundOn) {
+            addSound(TILE_SOUND, sound_open_tile);
+            addSound(PAUSE_SOUND, sound_pause_menu);
+            addSound(MATCH_SOUND, sound_tile_matched);
+            addSound(LOSE_SOUND, sound_game_lose);
+            addSound(WIN_SOUND, sound_game_win);
+        }
     }
 }

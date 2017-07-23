@@ -1,7 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/id_result_activity_fragment"
-    android:name="com.fajarsiddiq.berpasangan.module.result.ResultFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    style="@style/style_match_parent"
+    android:background="@color/color_grey">
+
+    <TextView
+        android:id="@+id/id_result_fragment_title_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:text="@string/string_result_fragment_title"
+        android:textColor="@color/color_white"
+        android:textSize="25sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/id_result_fragment_navigation_linear_layout"
+        android:layout_below="@+id/id_result_fragment_title_text_view"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/color_accent"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/style_result_fragment_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/string_result_fragment_correct_hint"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.5"
+                    android:padding="5dp"
+                    android:src="@drawable/drawable_correct"/>
+
+                <TextView
+                    android:id="@+id/id_result_fragment_correct_result_text_view"
+                    style="@style/style_result_fragment_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/color_light_green"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/style_result_fragment_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/string_result_fragment_accuracy_hint"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.5"
+                    android:padding="5dp"
+                    android:src="@drawable/drawable_accuracy"/>
+
+                <TextView
+                    android:id="@+id/id_result_fragment_accuracy_result_text_view"
+                    style="@style/style_result_fragment_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/color_brown">
+
+                <TextView
+                    style="@style/style_result_fragment_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Sisa Waktu"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.5"
+                    android:padding="5dp"
+                    android:src="@drawable/drawable_time_left"/>
+
+                <TextView
+                    android:id="@+id/id_result_fragment_time_left_result_text_view"
+                    style="@style/style_result_fragment_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/color_teal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/id_result_fragment_total_score_result_text_view"
+                    style="@style/style_result_fragment_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="25sp"/>
+
+                <TextView
+                    style="@style/style_result_fragment_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".4"
+                    android:text="@string/string_result_fragment_score_hint"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/color_cyan"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/drawable_coin"/>
+
+                    <TextView
+                        android:id="@+id/id_result_fragment_coin_result_text_view"
+                        style="@style/style_result_fragment_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/style_result_fragment_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".4"
+                    android:text="@string/string_result_fragment_coin_hint"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/id_result_fragment_navigation_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/id_result_fragment_high_score_button"
+            style="@style/style_wrap_content"
+            android:layout_marginRight="25dp"
+            android:text="@string/string_result_fragment_high_score_hint"/>
+
+        <Button
+            android:id="@+id/id_result_fragment_main_menu_button"
+            style="@style/style_wrap_content"
+            android:layout_marginLeft="25dp"
+            android:text="@string/string_result_fragment_main_menu_hint"/>
+    </LinearLayout>
+</RelativeLayout>

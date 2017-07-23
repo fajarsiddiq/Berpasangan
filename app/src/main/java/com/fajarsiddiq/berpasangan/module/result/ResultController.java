@@ -1,10 +1,8 @@
 package com.fajarsiddiq.berpasangan.module.result;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.fajarsiddiq.berpasangan.module.ModuleController;
-import com.fajarsiddiq.berpasangan.sqlite.Highscore;
 import com.fajarsiddiq.berpasangan.sqlite.User;
 
 import java.util.List;
@@ -16,19 +14,23 @@ import static com.fajarsiddiq.berpasangan.helper.HighscoreHelper.process;
 public class ResultController extends ModuleController {
     private ResultHandler mHandler;
 
-    ResultController(final ResultFragment fragment) {
-        super(fragment.getContext());
-        mHandler = new ResultHandler(fragment);
+    ResultController(final ResultActivity activity) {
+        super(activity);
+//        mHandler = new ResultHandler(activity);
     }
 
-    public void saveData(User user, com.fajarsiddiq.berpasangan.sqlite.Highscore highscore) {
-        new SaveData().execute(new Object[]{user, highscore});
+    public void saveData(User user) {
+        new SaveData().execute(user);
     }
 
-    private class SaveData extends AsyncTask<Object, Void, com.fajarsiddiq.berpasangan.sqlite.Highscore> {
+    public void processHighscore(com.fajarsiddiq.berpasangan.sqlite.Highscore highscore) {
+        new Highscore().execute(highscore);
+    }
+
+    private class SaveData extends AsyncTask<Object, Void, Void> {
 
         @Override
-        protected com.fajarsiddiq.berpasangan.sqlite.Highscore doInBackground(Object... params) {
+        protected Void doInBackground(Object... params) {
             User temp = (User) params[0];
             User user = User.findById(User.class, 1);
             user.setBestScore(user.getBestScore() > temp.getBestScore() ? user.getBestScore() : temp.getBestScore());
@@ -38,17 +40,14 @@ public class ResultController extends ModuleController {
             user.setTotalAccuracy(user.getTotalAccuracy() + temp.getTotalAccuracy());
             user.setTotalZonk(user.getTotalZonk() + temp.getTotalZonk());
             user.save();
-            return ((com.fajarsiddiq.berpasangan.sqlite.Highscore) params[1]);
+            return null;
+//            return ((com.fajarsiddiq.berpasangan.sqlite.Highscore) params[1]);
         }
 
-        @Override
-        protected void onPostExecute(com.fajarsiddiq.berpasangan.sqlite.Highscore highscore) {
-            processHighscore(highscore);
-        }
-    }
-
-    public void processHighscore(com.fajarsiddiq.berpasangan.sqlite.Highscore highscore) {
-        new Highscore().execute(highscore);
+//        @Override
+//        protected void onPostExecute(com.fajarsiddiq.berpasangan.sqlite.Highscore highscore) {
+//            processHighscore(highscore);
+//        }
     }
 
     private class Highscore extends AsyncTask<com.fajarsiddiq.berpasangan.sqlite.Highscore, Void, Boolean> {

@@ -12,10 +12,10 @@ import static com.fajarsiddiq.berpasangan.R.array.array_store_content_monument;
  * Created by Muhammad Fajar on 05/06/2016.
  */
 public class SQLiteHelper {
-    public static void prepareDb(final String name, final Context context) {
+    public static void prepareDb(final Context context) {
         User user = User.findById(User.class, 1);
         if(user == null) {
-            user = new User(name);
+            user = new User();
             user.setCoin(0);
             user.setTotalDuration(0);
             user.save();

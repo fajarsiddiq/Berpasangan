@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/id_highscore_activity_fragment"
-    android:name="com.fajarsiddiq.berpasangan.module.highscore.HighscoreFragment"
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:layout="@layout/layout_highscores_fragment" />
+    style="@style/style_match_parent">
+
+    <ScrollView
+        style="@style/style_match_parent"
+        android:layout_below="@+id/id_highscores_fragment_title_linear_layout"
+        android:layout_centerInParent="true"
+        android:paddingBottom="10dp"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:id="@+id/id_highscores_fragment_linear_layout"
+            style="@style/style_match_parent"
+            android:gravity="center"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/id_highscore_fragment_no_data_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:text="@string/string_highscore_fragment_no_data"
+        android:textColor="@color/color_brown"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/id_highscores_fragment_title_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/id_highscores_fragment_section_title_text_view"
+            style="@style/style_match_parent"
+            android:gravity="center"
+            android:text="@string/string_highscore_fragment_name"
+            android:textColor="@color/color_brown"
+            android:textSize="30sp"/>
+
+    </LinearLayout>
+</RelativeLayout>

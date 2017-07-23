@@ -1,6 +1,5 @@
 package com.fajarsiddiq.berpasangan.module.board;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
@@ -16,21 +15,21 @@ import com.fajarsiddiq.berpasangan.module.ModuleHandler;
 import com.fajarsiddiq.berpasangan.module.result.ResultActivity;
 
 import static android.view.LayoutInflater.from;
+import static android.view.View.OnClickListener;
+import static com.fajarsiddiq.berpasangan.R.drawable.drawable_check;
 import static com.fajarsiddiq.berpasangan.R.drawable.drawable_tile;
 import static com.fajarsiddiq.berpasangan.R.id.id_tile_image_view;
+import static com.fajarsiddiq.berpasangan.R.layout.layout_tile;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_message;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_positive;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_finish_title;
-import static com.fajarsiddiq.berpasangan.R.layout.layout_tile;
-import static android.view.View.OnClickListener;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_time_remaining;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timeout_message;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timeout_positive;
 import static com.fajarsiddiq.berpasangan.R.string.string_board_fragment_timeout_title;
 import static com.fajarsiddiq.berpasangan.helper.SnackBarHelper.useSnackBar;
-import static com.fajarsiddiq.berpasangan.R.drawable.drawable_check;
-import static java.lang.String.valueOf;
 import static java.lang.Integer.parseInt;
+import static java.lang.String.valueOf;
 
 /**
  * Created by Muhammad Fajar on 28/03/2016.
@@ -46,8 +45,8 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
     private View first;
     private View second;
 
-    public BoardHandler(final BoardFragment fragment) {
-        super(fragment);
+    public BoardHandler(final BoardActivity activity) {
+        super(activity);
         mWhatTimer = mWhat + 1;
         mWhatTimeout = mWhat + 2;
         mWhatQuestion = mWhat + 3;
@@ -60,35 +59,34 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
 
     @Override
     public void handleMessage(Message message) {
-        final BoardFragment fragment = (BoardFragment) mFragment;
+        final BoardActivity activity = (BoardActivity) mActivity;
         if(message.what == mWhatTimer) {
-            if(fragment.getActivity() != null)
-                fragment.getTimerTextView().setText(new StringBuilder(fragment.getString(string_board_fragment_time_remaining)).append(" ").append((String) message.obj));
+            if(activity != null)
+                activity.getTimerTextView().setText(new StringBuilder(activity.getString(string_board_fragment_time_remaining)).append(" ").append((String) message.obj));
         } else if(message.what == mWhatTimeout) {
-            final BoardActivity activity = (BoardActivity) fragment.getActivity();
-            if(activity != null) {
-                fragment.getBoardSound().playSound(fragment.getBoardSound().LOSE_SOUND);
+            if(activity != null && !activity.isFinishing()) {
+                activity.getBoardSound().playSound(activity.getBoardSound().LOSE_SOUND);
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                 builder.setTitle(string_board_fragment_timeout_title)
                         .setMessage(string_board_fragment_timeout_message)
-                        .setPositiveButton(fragment.getString(string_board_fragment_timeout_positive), new DialogInterface.OnClickListener() {
+                        .setPositiveButton(activity.getString(string_board_fragment_timeout_positive), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                activity.startActivity(new Intent(activity, ResultActivity.class).putExtra(ResultActivity.data, new int[]{BoardActivity.attemp, BoardActivity.answered, BoardActivity.totalQuestion, parseInt(fragment.getTimerTextView().getText().toString().split(" : ")[1]), parseInt(fragment.getScoreTextView().getText().toString()), BoardActivity.zonk, BoardActivity.gameMode}));
+                                activity.startActivity(new Intent(activity, ResultActivity.class).putExtra(ResultActivity.data, new int[]{BoardActivity.attemp, BoardActivity.answered, BoardActivity.totalQuestion, parseInt(activity.getTimerTextView().getText().toString().split(" : ")[1]), parseInt(activity.getScoreTextView().getText().toString()), BoardActivity.zonk, BoardActivity.gameMode}));
                                 activity.finish();
                             }
                         }).setCancelable(false).create().show();
             }
         } else if(message.what == mWhatQuestion) {
             Point size = new Point();
-            fragment.getActivity().getWindowManager().getDefaultDisplay().getSize(size);
+            activity.getWindowManager().getDefaultDisplay().getSize(size);
             int screenWidth = size.x;
             int screenHeight = size.y;
 
             final Item[] items = (Item[]) message.obj;
             final int x = message.arg1;
             final int y = message.arg2;
-            final GridLayout gridLayout = fragment.getGridLayout();
+            final GridLayout gridLayout = activity.getGridLayout();
 
             View view;
             int temp = (x > y) ? x : y;
@@ -96,14 +94,14 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             int dim = screenWidth / temp;
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(dim, dim);
             for(int i = 0; i < items.length; i++) {
-                view = from(fragment.getContext()).inflate(layout_tile, null);
+                view = from(activity).inflate(layout_tile, null);
                 view.setLayoutParams(layoutParams);
                 view.setId(i);
                 view.setOnClickListener(this);
                 gridLayout.addView(view);
             }
         } else if(message.what == mWhatRefresh) {
-            final GridLayout gridLayout = fragment.getGridLayout();
+            final GridLayout gridLayout = activity.getGridLayout();
             BoardView[] views = (BoardView[]) message.obj;
             View view;
             int id, status;
@@ -116,29 +114,27 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
                 setBackground(view, id, status, image);
             }
         } else if(message.what == mWhatFinish) {
-            fragment.getBoardSound().playSound(fragment.getBoardSound().WIN_SOUND);
-            AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getActivity());
-            fragment.pauseTimer();
-            builder.setMessage(fragment.getString(string_board_fragment_finish_message))
-                    .setTitle(fragment.getString(string_board_fragment_finish_title));
-            builder.setPositiveButton(fragment.getString(string_board_fragment_finish_positive), new DialogInterface.OnClickListener() {
+            activity.getBoardSound().playSound(activity.getBoardSound().WIN_SOUND);
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            activity.pauseTimer();
+            builder.setMessage(activity.getString(string_board_fragment_finish_message))
+                    .setTitle(activity.getString(string_board_fragment_finish_title));
+            builder.setPositiveButton(activity.getString(string_board_fragment_finish_positive), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    Activity activity = fragment.getActivity();
-                    activity.startActivity(new Intent(activity, ResultActivity.class).putExtra(ResultActivity.data, new int[]{BoardActivity.attemp, BoardActivity.answered, BoardActivity.totalQuestion, parseInt(fragment.getTimerTextView().getText().toString().split(" : ")[1]), parseInt(fragment.getScoreTextView().getText().toString()), BoardActivity.zonk, BoardActivity.gameMode}));
+                    activity.startActivity(new Intent(activity, ResultActivity.class).putExtra(ResultActivity.data, new int[]{BoardActivity.attemp, BoardActivity.answered, BoardActivity.totalQuestion, parseInt(activity.getTimerTextView().getText().toString().split(" : ")[1]), parseInt(activity.getScoreTextView().getText().toString()), BoardActivity.zonk, BoardActivity.gameMode}));
                     activity.finish();
                 }
             }).setCancelable(false).create().show();
         } else if(message.what == mWhatScore) {
-            fragment.getScoreTextView().setText(valueOf(message.obj));
+            activity.getScoreTextView().setText(valueOf(message.obj));
         }
     }
 
     @Override
     public void onClick(View view) {
         BoardActivity.attemp += 1;
-        BoardFragment fragment = (BoardFragment) mFragment;
-        BoardActivity activity = (BoardActivity) fragment.getActivity();
-        fragment.getBoardSound().playSound(fragment.getBoardSound().TILE_SOUND);
+        BoardActivity activity = (BoardActivity) mActivity;
+        activity.getBoardSound().playSound(activity.getBoardSound().TILE_SOUND);
         if(first == null && second == null) {
             refreshBoard(view.getId(), null);
             first = view;
@@ -148,16 +144,16 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             second = view;
             second.setOnClickListener(null);
 
-            if (fragment.isZonk(first.getId()) || fragment.isZonk(second.getId())) {
-                useSnackBar(fragment.getContext(), activity, "It's zonk. Minus 5.");
-                fragment.updateScore(-5);
+            if (activity.isZonk(first.getId()) || activity.isZonk(second.getId())) {
+                useSnackBar(activity, activity, "It's zonk. Minus 5.");
+                activity.updateScore(-5);
                 BoardActivity.zonk += 1;
             }
 
-            if (fragment.isSame(first.getId(), second.getId())) {
-                fragment.getBoardSound().playSound(fragment.getBoardSound().MATCH_SOUND);
-                fragment.updateScore(10);
-                useSnackBar(fragment.getContext(), activity, "Good! Plus 10.");
+            if (activity.isSame(first.getId(), second.getId())) {
+                activity.getBoardSound().playSound(activity.getBoardSound().MATCH_SOUND);
+                activity.updateScore(10);
+                useSnackBar(activity, activity, "Good! Plus 10.");
                 BoardActivity.answered += 1;
             }
             first.setOnClickListener(this);
@@ -168,14 +164,14 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
     }
 
     private String getImageName(final int id) {
-        BoardFragment fragment = (BoardFragment) mFragment;
-        Item temp = fragment.getCell(id);
+        BoardActivity activity = (BoardActivity) mActivity;
+        Item temp = activity.getCell(id);
         return temp instanceof Question ? temp.getName() : temp.getValue();
     }
 
     private void refreshBoard(final Integer id1, final Integer id2) {
-        BoardFragment fragment = (BoardFragment) mFragment;
-        fragment.refreshBoard(id1, id2);
+        BoardActivity activity = (BoardActivity) mActivity;
+        activity.refreshBoard(id1, id2);
     }
 
     private void setBackground(final View view, final int id, final int status, final boolean image) {
@@ -186,7 +182,7 @@ public class BoardHandler extends ModuleHandler implements OnClickListener {
             view.setOnClickListener(null);
         } else if(status == 2) {
             if(image) {
-                int drawableId = Drawable.getDrawable(mFragment.getContext(), getImageName(id));
+                int drawableId = Drawable.getDrawable(mActivity, getImageName(id));
                 ((ImageView) view.findViewById(id_tile_image_view)).setImageResource(drawableId);
             }
         }

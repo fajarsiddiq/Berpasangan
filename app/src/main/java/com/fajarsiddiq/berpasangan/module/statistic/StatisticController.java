@@ -13,9 +13,9 @@ import static android.os.Message.obtain;
 public class StatisticController extends ModuleController {
     private StatisticHandler mHandler;
 
-    StatisticController(final StatisticFragment fragment) {
-        super(fragment.getContext());
-        mHandler = new StatisticHandler(fragment);
+    StatisticController(final StatisticActivity activity) {
+        super(activity);
+        mHandler = new StatisticHandler(activity);
         new LoadData().execute();
     }
 

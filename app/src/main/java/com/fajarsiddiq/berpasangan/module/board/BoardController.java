@@ -11,8 +11,8 @@ import static android.os.Message.obtain;
 import static com.fajarsiddiq.berpasangan.R.array.array_question;
 import static java.lang.String.valueOf;
 import static java.lang.Thread.sleep;
-import static java.util.Collections.shuffle;
 import static java.util.Arrays.asList;
+import static java.util.Collections.shuffle;
 
 /**
  * Created by Muhammad Fajar on 28/03/2016.
@@ -28,9 +28,9 @@ public class BoardController extends ModuleController {
     private int mTimeRemaining;
     private boolean isRun;
 
-    public BoardController(BoardFragment fragment) {
-        super(fragment.getContext());
-        mHandler = new BoardHandler(fragment);
+    public BoardController(BoardActivity activity) {
+        super(activity);
+        mHandler = new BoardHandler(activity);
         mNoOfTrue = 0;
         mScore = 0;
     }
@@ -48,8 +48,10 @@ public class BoardController extends ModuleController {
     }
 
     public void stopTimer() {
-        if(mThread.isAlive())
-            mThread.currentThread().interrupt();
+        if(mThread.isAlive()) {
+            mThread.interrupt();
+            Log.i("BoardController", "Thread interrupted");
+        }
     }
 
     public void pauseTimer() {
@@ -64,80 +66,6 @@ public class BoardController extends ModuleController {
     public void updateScore(final int diff) {
         this.mScore += diff;
         mHandler.sendMessage(obtain(mHandler, mHandler.mWhatScore, mScore));
-    }
-
-    private class Timer extends AsyncTask<Integer, Integer, Void> {
-
-        @Override
-        protected Void doInBackground(final Integer... params) {
-            mThread = new Thread(new Runnable() {
-                int time = params[0];
-                @Override
-                public void run() {
-                    while (isRun) {
-                        publishProgress(time);
-                        try {
-                            sleep(1000);
-                        } catch (InterruptedException e) {
-                            Log.i("Test", "Exception");
-                        }
-                        --time;
-                        if(time < 0)
-                            isRun = false;
-                    }
-                }
-            });
-            mThread.start();
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            mHandler.sendMessage(obtain(mHandler, mHandler.mWhatTimer, valueOf(values[0])));
-            mTimeRemaining = values[0];
-            if(values[0] == 0)
-                mHandler.sendEmptyMessage(mHandler.mWhatTimeout);
-        }
-    }
-
-    private class Generator extends AsyncTask<Integer, Integer, Item[]> {
-
-        @Override
-        protected Item[] doInBackground(Integer... params) {
-            Item[] items = new Item[params[0]*params[1]];
-            int noOfQuestion = items.length / 2;
-            final String[] questions = random(mContext.getResources().getStringArray(array_question), noOfQuestion);
-            Question question;
-            Answer answer;
-            for(int i = 0; i < noOfQuestion; i++) {
-                question = new Question(valueOf(i), questions[i].split("_")[0], questions[i].split("_")[1]);
-                answer = new Answer(questions[i].split("_")[1]);
-                items[i] = question;
-                items[i+noOfQuestion] = answer;
-            }
-            if(items.length % 2 != 0)
-                items[items.length-1] = new QuestionZonk("drawable_zonk");
-
-            List<Item> temp = asList(items);
-            shuffle(temp);
-            items = temp.toArray(new Item[temp.size()]);
-            mBoard = new Board(items);
-            return items;
-        }
-
-        @Override
-        protected void onPostExecute(Item[] items) {
-            mHandler.sendMessage(obtain(mHandler, mHandler.mWhatQuestion, x, y, items));
-            StringBuilder sb = new StringBuilder();
-            for(Item item : items) {
-                if(item instanceof Question)
-                    sb.append(item.getName()).append(" ");
-                else if(item instanceof Answer)
-                    sb.append(item.getValue()).append(" ");
-            }
-            Log.i("test", sb.toString());
-
-        }
     }
 
     public boolean isSame(final int id1, final int id2) {
@@ -167,8 +95,10 @@ public class BoardController extends ModuleController {
         item2.setAnswered(true);
         mNoOfTrue++;
         boolean finish = checkFinish();
-        if(finish)
+        if(finish) {
             mHandler.sendEmptyMessage(mHandler.mWhatFinish);
+            stopTimer();
+        }
     }
 
     private boolean checkFinish() {
@@ -260,5 +190,79 @@ public class BoardController extends ModuleController {
             views[i] = new BoardView(i, status, image);
         }
         mHandler.sendMessage(obtain(mHandler, mHandler.mWhatRefresh, views));
+    }
+
+    private class Timer extends AsyncTask<Integer, Integer, Void> {
+
+        @Override
+        protected Void doInBackground(final Integer... params) {
+            mThread = new Thread(new Runnable() {
+                int time = params[0];
+                @Override
+                public void run() {
+                    while (isRun) {
+                        publishProgress(time);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            Log.i("Test", "Exception");
+                        }
+                        --time;
+                        if(time < 0)
+                            isRun = false;
+                    }
+                }
+            });
+            mThread.start();
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            mHandler.sendMessage(obtain(mHandler, mHandler.mWhatTimer, valueOf(values[0])));
+            mTimeRemaining = values[0];
+            if(values[0] == 0)
+                mHandler.sendEmptyMessage(mHandler.mWhatTimeout);
+        }
+    }
+
+    private class Generator extends AsyncTask<Integer, Integer, Item[]> {
+
+        @Override
+        protected Item[] doInBackground(Integer... params) {
+            Item[] items = new Item[params[0]*params[1]];
+            int noOfQuestion = items.length / 2;
+            final String[] questions = random(mContext.getResources().getStringArray(array_question), noOfQuestion);
+            Question question;
+            Answer answer;
+            for(int i = 0; i < noOfQuestion; i++) {
+                question = new Question(valueOf(i), questions[i].split("_")[0], questions[i].split("_")[1]);
+                answer = new Answer(questions[i].split("_")[1]);
+                items[i] = question;
+                items[i+noOfQuestion] = answer;
+            }
+            if(items.length % 2 != 0)
+                items[items.length-1] = new QuestionZonk("drawable_zonk");
+
+            List<Item> temp = asList(items);
+            shuffle(temp);
+            items = temp.toArray(new Item[temp.size()]);
+            mBoard = new Board(items);
+            return items;
+        }
+
+        @Override
+        protected void onPostExecute(Item[] items) {
+            mHandler.sendMessage(obtain(mHandler, mHandler.mWhatQuestion, x, y, items));
+            StringBuilder sb = new StringBuilder();
+            for(Item item : items) {
+                if(item instanceof Question)
+                    sb.append(item.getName()).append(" ");
+                else if(item instanceof Answer)
+                    sb.append(item.getValue()).append(" ");
+            }
+            Log.i("test", sb.toString());
+
+        }
     }
 }

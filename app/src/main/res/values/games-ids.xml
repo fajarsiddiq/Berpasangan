@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Google Play game services IDs.
+Save this file as res/values/games-ids.xml in your project.
+-->
+<resources>
+    <string name="app_id">947328936661</string>
+    <string name="package_name">com.fajarsiddiq.berpasangan</string>
+    <string name="achievement_paham_aturan">CgkI1dXRickbEAIQEA</string>
+    <string name="achievement_pemanasan">CgkI1dXRickbEAIQBA</string>
+    <string name="achievement_superhero">CgkI1dXRickbEAIQBQ</string>
+    <string name="achievement_penggemar">CgkI1dXRickbEAIQBg</string>
+    <string name="achievement_ingatan_kuat">CgkI1dXRickbEAIQBw</string>
+    <string name="achievement_kutu_buku">CgkI1dXRickbEAIQCA</string>
+    <string name="achievement_pustakawan">CgkI1dXRickbEAIQCQ</string>
+    <string name="achievement_penjelajah">CgkI1dXRickbEAIQCg</string>
+    <string name="achievement_panen_koin">CgkI1dXRickbEAIQCw</string>
+    <string name="achievement_penguasa_paman_sam">CgkI1dXRickbEAIQDA</string>
+    <string name="leaderboard_skor_tertinggi_4x4">CgkI1dXRickbEAIQAQ</string>
+    <string name="leaderboard_skor_tertinggi_5x5">CgkI1dXRickbEAIQAg</string>
+    <string name="leaderboard_skor_tertinggi_6x5">CgkI1dXRickbEAIQAw</string>
+    <string name="leaderboard_koin_terbanyak">CgkI1dXRickbEAIQDQ</string>
+    <string name="leaderboard_akurasi">CgkI1dXRickbEAIQDw</string>
+</resources>

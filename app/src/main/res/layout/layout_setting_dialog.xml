@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/style_wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/id_setting_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:text="@string/setting_dialog_description"
+        android:textSize="22sp"/>
+
+    <TextView
+        android:id="@+id/id_setting_sound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_setting_description"
+        android:layout_marginLeft="40dp"
+        android:padding="10dp"
+        android:text="@string/setting_dialog_sound"
+        android:textSize="18sp"/>
+
+    <Switch
+        android:id="@+id/sound_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/id_setting_sound"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/id_setting_tutorial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_setting_sound"
+        android:layout_marginLeft="40dp"
+        android:padding="10dp"
+        android:text="@string/setting_dialog_tutorial"
+        android:textSize="18sp"/>
+</RelativeLayout>
